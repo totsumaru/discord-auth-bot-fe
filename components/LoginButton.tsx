@@ -3,7 +3,6 @@
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {SupabaseClient} from "@supabase/supabase-js";
 import {useState} from "react";
-import {useRouter} from "next/navigation";
 
 type Props = {
   userId: string
@@ -11,7 +10,6 @@ type Props = {
 
 export default function LoginButton({userId}: Props) {
   const supabase = createClientComponentClient();
-  const router = useRouter()
   const [user, setUser] = useState(userId);
 
   supabase.auth.onAuthStateChange((event, session) => {
