@@ -2,7 +2,10 @@
 
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {SupabaseClient} from "@supabase/supabase-js";
-import {useState} from "react";
+import useUserStore from "@/store/user";
+import {useRouter} from "next/navigation";
+import {AppRouterInstance} from "next/dist/shared/lib/app-router-context";
+// import {useState} from "react";
 
 type Props = {
   userId: string
@@ -10,19 +13,26 @@ type Props = {
 
 export default function LoginButton({userId}: Props) {
   const supabase = createClientComponentClient();
-  const [user, setUser] = useState(userId);
+  const userStore = useUserStore()
+  const router = useRouter()
 
   supabase.auth.onAuthStateChange((event, session) => {
     if (event == 'SIGNED_IN') {
-      setUser(session?.user.id || "")
+      userStore.setId(session?.user.id || "")
     } else if (event == 'SIGNED_OUT') {
-      setUser("")
+      userStore.setId("")
     }
   })
 
   return (
     <>
-      {user ? logoutButton(supabase) : loginButton(supabase)}
+      {userId
+        ? logoutButton(supabase, router)
+        : userStore.id
+          ? logoutButton(supabase, router)
+          : loginButton(supabase)
+      }
+      {/*{userStore.id ? logoutButton(supabase) : loginButton(supabase)}*/}
     </>
   )
 }
@@ -49,12 +59,13 @@ function loginButton(supabase: SupabaseClient) {
   )
 }
 
-function logoutButton(supabase: SupabaseClient) {
+function logoutButton(supabase: SupabaseClient, router: AppRouterInstance) {
   const handler = async () => {
     const {error} = await supabase.auth.signOut()
     if (error) {
       alert("ログアウトに失敗しました")
     }
+    router.refresh()
   }
 
   return (
