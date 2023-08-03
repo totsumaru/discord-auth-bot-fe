@@ -5,7 +5,6 @@ import {SupabaseClient} from "@supabase/supabase-js";
 import useUserStore from "@/store/user";
 import {useRouter} from "next/navigation";
 import {AppRouterInstance} from "next/dist/shared/lib/app-router-context";
-// import {useState} from "react";
 
 type Props = {
   userId: string
@@ -18,6 +17,7 @@ export default function LoginButton({userId}: Props) {
 
   supabase.auth.onAuthStateChange((event, session) => {
     if (event == 'SIGNED_IN') {
+      console.log(session)
       userStore.setId(session?.user.id || "")
     } else if (event == 'SIGNED_OUT') {
       userStore.setId("")

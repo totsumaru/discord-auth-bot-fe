@@ -21,20 +21,23 @@ export default function ReqButton() {
   }, [])
 
   const handler = async () => {
-    axios.get('http://localhost:8080/test', {
+    const res = await axios.get('http://localhost:8080/api/login', {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
+    console.log(res.data)
   }
 
   return (
-    <button
-      type="button"
-      className="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
-      onClick={handler}
-    >
-      バックエンドにリクエストを送る
-    </button>
+    <>
+      <button
+        type="button"
+        className="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+        onClick={handler}
+      >
+        バックエンドにリクエストを送る
+      </button>
+    </>
   )
 }

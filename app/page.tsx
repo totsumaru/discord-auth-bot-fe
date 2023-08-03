@@ -1,6 +1,7 @@
 import {createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import {cookies} from 'next/headers'
 import LoginButton from "@/components/button/LoginButton";
+import ReqButton from "@/components/button/ReqButton";
 
 export default async function Index() {
   const supabase = createServerComponentClient({cookies})
@@ -9,6 +10,7 @@ export default async function Index() {
   return (
     <>
       <LoginButton userId={user?.id || ""}/>
+      <ReqButton/>
     </>
   )
 }
