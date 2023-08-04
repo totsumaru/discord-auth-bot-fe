@@ -9,6 +9,10 @@ export default function Index() {
   const [userId, setUserId] = useState<string>("")
 
   useEffect(() => {
+   
+  }, [])
+
+  useEffect(() => {
     supabase.auth.getUser().then(({data: {user}}) => {
       if (user) {
         setUserId(user.id)

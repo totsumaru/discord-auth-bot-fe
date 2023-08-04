@@ -1,12 +1,24 @@
-import {createServerComponentClient} from '@supabase/auth-helpers-nextjs'
-import {cookies} from 'next/headers'
-import LoginButton from "@/components/button/LoginButton";
+"use client"
 
-export default async function Index() {
-  const supabase = createServerComponentClient({cookies})
-  const {data: {user}} = await supabase.auth.getUser()
+import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
+import {useEffect, useState} from "react";
+
+// 管理できるサーバーの一覧を表示します
+export default function Index() {
+  const supabase = createClientComponentClient()
+  const [userId, setUserId] = useState<string>("")
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({data: {user}}) => {
+      if (user) {
+        setUserId(user.id)
+      }
+    })
+  }, [])
 
   return (
-    <LoginButton userId={user?.id || ""}/>
+    <div className="">
+      <p>hello</p>
+    </div>
   )
 }

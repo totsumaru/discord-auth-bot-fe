@@ -32,7 +32,6 @@ export default function LoginButton({userId}: Props) {
           ? logoutButton(supabase, router)
           : loginButton(supabase)
       }
-      {/*{userStore.id ? logoutButton(supabase) : loginButton(supabase)}*/}
     </>
   )
 }
@@ -41,6 +40,9 @@ function loginButton(supabase: SupabaseClient) {
   const handler = async () => {
     const {data, error} = await supabase.auth.signInWithOAuth({
       provider: 'discord',
+      options: {
+        scopes: "guilds"
+      }
     })
 
     if (error) {
