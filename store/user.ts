@@ -1,19 +1,36 @@
 import {create} from 'zustand'
+import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 
-type UserState = {
-  id: string
+type userState = {
+  loginUserId: string
 }
 
-type UserStore = UserState & {
-  setId: (id: string) => void
+type UserStore = userState & {
+  setLoginUserId: (userId: string) => void
+  initialize: () => void
 }
+
+// この中でhooksを使用するのはNG
 
 const useUserStore = create<UserStore>((set) => ({
-  id: "",
-  setId: (id) => {
-    set(() => ({
-      id: id,
-    }))
-  }
+  loginUserId: "",
+  // リロードされた時、userIdをstateに設定します
+  initialize: async () => {
+    const supabase = createClientComponentClient()
+    supabase.auth.getUser().then(({data: {user}}) => {
+      if (user) {
+        set({
+          loginUserId: user.id
+        });
+      }
+    })
+  },
+  // ログインしているユーザーのIDを設定します
+  setLoginUserId: async (userId) => {
+    set({
+      loginUserId: userId
+    });
+  },
 }))
+
 export default useUserStore
