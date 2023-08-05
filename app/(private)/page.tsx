@@ -5,6 +5,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import useUserStore from "@/store/user";
 import NavigationBar from "@/components/nav/NavigationBar";
+import Guilds from "@/components/card/Guilds";
 
 type backendRes = {
   servers: [{
@@ -55,12 +56,9 @@ export default function Index() {
   return (
     <div className="">
       <NavigationBar tabVisible={false}/>
-      <p>hello</p>
-      {backend?.servers.map(server => ( // Mapping関数を追加
-        <div key={server.id}>
-          <h2>{server.name}</h2>
-        </div>
-      ))}
+      {backend?.servers && (
+        <Guilds servers={backend?.servers}/>
+      )}
     </div>
   )
 }
