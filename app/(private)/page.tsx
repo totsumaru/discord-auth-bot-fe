@@ -7,6 +7,7 @@ import useUserStore from "@/store/user";
 import NavigationBar from "@/components/nav/NavigationBar";
 import Guilds from "@/components/card/Guilds";
 import Spinner from "@/components/loading/Spinner";
+import LoginButton from "@/components/button/LoginButton";
 
 type backendRes = {
   servers: [{
@@ -61,15 +62,31 @@ export default function Index() {
       <NavigationBar tabVisible={false}/>
       <div className="py-24 sm:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">サーバーを選択</h2>
-            <p className="my-6 text-lg leading-8 text-gray-600">
-              ここに表示されていないサーバーは、botが導入されていません。botを導入してからダッシュボードに移動してください。
-            </p>
-          </div>
-          {backendLoading ? <Spinner/> : (
-            backend?.servers && (
-              <Guilds servers={backend?.servers}/>
+          {store.loginLoading ? (
+            <Spinner/>
+          ) : (
+            store.loginUserId ? (
+              <>
+                <div className="mx-auto max-w-2xl lg:mx-0">
+                  <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">サーバーを選択</h2>
+                  <p className="my-6 text-lg leading-8 text-gray-600">
+                    ここに表示されていないサーバーは、botが導入されていません。botを導入してからダッシュボードに移動してください。
+                  </p>
+                </div>
+                {backendLoading ? <Spinner/> : (
+                  backend?.servers && (
+                    <Guilds servers={backend?.servers}/>
+                  ))
+                }
+              </>
+            ) : (
+              <div className="mx-auto max-w-2xl lg:mx-0">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Login</h2>
+                <p className="my-6 text-lg leading-8 text-gray-600">
+                  Discordでログインをしてください。
+                </p>
+                <LoginButton/>
+              </div>
             )
           )}
         </div>
