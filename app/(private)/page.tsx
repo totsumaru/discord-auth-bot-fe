@@ -27,8 +27,8 @@ export default function Index() {
   useEffect(() => {
     // backendからサーバーの一覧を取得します
     supabase.auth.getSession().then(({data: {session}}) => {
-      console.log("token: ", session?.provider_token)
-      if (session?.provider_token && !backend?.servers[0].id) {
+      // loginUserIdが入ったタイミング(ログインorログイン状態でリロード)で、バックエンドから1度だけ取得します
+      if (session?.provider_token && store.loginUserId) {
         const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/guild`
         axios.get(url, {
           headers: {
