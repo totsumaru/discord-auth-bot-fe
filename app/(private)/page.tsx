@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import useUserStore from "@/store/user";
 import NavigationBar from "@/components/nav/NavigationBar";
 import Guilds from "@/components/card/Guilds";
+import Spinner from "@/components/loading/Spinner";
 
 type backendRes = {
   servers: [{
@@ -19,6 +20,7 @@ type backendRes = {
 export default function Index() {
   const supabase = createClientComponentClient()
   const [backend, setBackend] = useState<backendRes>()
+  const [backendLoading, setBackendLoading] = useState<boolean>(true)
   const store = useUserStore()
 
   useEffect(() => {
@@ -37,6 +39,7 @@ export default function Index() {
           }
         }).then((res) => {
           setBackend(res.data)
+          setBackendLoading(false)
         })
       }
     })
@@ -56,9 +59,21 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
       <NavigationBar tabVisible={false}/>
-      {backend?.servers && (
-        <Guilds servers={backend?.servers}/>
-      )}
+      <div className="py-24 sm:py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">サーバーを選択</h2>
+            <p className="my-6 text-lg leading-8 text-gray-600">
+              ここに表示されていないサーバーは、botが導入されていません。botを導入してからダッシュボードに移動してください。
+            </p>
+          </div>
+          {backendLoading ? <Spinner/> : (
+            backend?.servers && (
+              <Guilds servers={backend?.servers}/>
+            )
+          )}
+        </div>
+      </div>
     </div>
   )
 }
