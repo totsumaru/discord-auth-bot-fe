@@ -36,7 +36,7 @@ export default function Index() {
                 Discordの複雑な権限、まるっと管理。
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                ロールの権限やチャンネルの権限、漏れなくダッシュボードで一覧管理できます。
+                ロールの権限やチャンネルの権限、漏れなくダッシュボードで一括管理できます。
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 {/* botの導入URL */}

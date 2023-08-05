@@ -17,7 +17,7 @@ export default function LoginButton({userId}: Props) {
 
   supabase.auth.onAuthStateChange((event, session) => {
     if (event == 'SIGNED_IN') {
-      console.log(session)
+      // console.log(session)
       userStore.setId(session?.user.id || "")
     } else if (event == 'SIGNED_OUT') {
       userStore.setId("")

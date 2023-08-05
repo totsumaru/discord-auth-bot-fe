@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/invite/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(public)/invite/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(private)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(private)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(public)/invite/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(public)/invite/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/button/LoginButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/button/LoginButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +43,12 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "route-group",
+    "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "javascript.nodejs.core.library.configured.version": "18.12.0",
     "javascript.nodejs.core.library.typings.version": "18.17.1",
-    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/app/dashboard",
+    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/app",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -53,8 +58,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/dashboard" />
       <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/dashboard" />
       <recent name="$PROJECT_DIR$/components/button" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/components" />
