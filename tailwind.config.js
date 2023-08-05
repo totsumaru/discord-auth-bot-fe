@@ -5,7 +5,11 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "gradient_1": "url('/gradient_1.png')"
+      }
+    },
   },
   variants: {
     extend: {},

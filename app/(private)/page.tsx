@@ -54,7 +54,7 @@ export default function Index() {
   );
 
   return (
-    <div className="">
+    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
       <NavigationBar tabVisible={false}/>
       {backend?.servers && (
         <Guilds servers={backend?.servers}/>
