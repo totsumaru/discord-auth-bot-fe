@@ -12,7 +12,8 @@ export default function LoginButton() {
     const {data, error} = await supabase.auth.signInWithOAuth({
       provider: 'discord',
       options: {
-        scopes: "guilds"
+        scopes: "guilds",
+        // redirectTo: `${process.env.NEXT_PUBLIC_FE_URL}/dashboard`
       }
     })
     if (error) {

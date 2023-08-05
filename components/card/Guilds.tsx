@@ -31,7 +31,7 @@ export default function Guilds({servers}: Props) {
             <div className="-mt-px flex divide-x divide-indigo-100">
               <div className="-ml-px flex w-0 flex-1">
                 <a
-                  href={`/dashboard?server_id=${id}`}
+                  href={`/dashboard/${id}`}
                   className="text-indigo-600 bg-indigo-50 hover:bg-indigo-100 relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold"
                 >
                   ダッシュボードへ移動
