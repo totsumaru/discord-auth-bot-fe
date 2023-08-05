@@ -2,7 +2,7 @@ import {create} from 'zustand'
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 
 type userState = {
-  loginUserId: string
+  loginUserId: string | undefined // loading時はundefinedです
 }
 
 type UserStore = userState & {
@@ -13,7 +13,7 @@ type UserStore = userState & {
 // この中でhooksを使用するのはNG
 
 const useUserStore = create<UserStore>((set) => ({
-  loginUserId: "",
+  loginUserId: undefined,
   // リロードされた時、userIdをstateに設定します
   initialize: async () => {
     const supabase = createClientComponentClient()

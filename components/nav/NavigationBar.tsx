@@ -4,7 +4,6 @@ import {Fragment} from 'react'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import LoginButton from "@/components/button/LoginButton";
-import useUserStore from "@/store/user";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -15,8 +14,6 @@ type Props = {
 }
 
 export default function NavigationBar({tabVisible}: Props) {
-  const userStore = useUserStore()
-
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({open}) => (
