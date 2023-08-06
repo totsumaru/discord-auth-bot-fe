@@ -36,44 +36,44 @@ export default function RolesTable({roles}: Props) {
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+              <div style={{maxHeight: '700px', overflowY: 'auto'}}>
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead className="bg-gray-50">
+                  <tr>
+                    <th scope="col" className="sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 z-10 bg-white">
                     権限
                   </th>
-                  {roles.map(({name}) => (
-                    <th key={name} scope="col"
-                        className="whitespace-nowrap w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      {name === "@everyone" ? name : `@${name}`}
-                    </th>
-                  ))}
-                </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-
-                {permissionNames.map(({value, jp, description}) => (
-                  // 1つの権限(= 1row)
-                  <tr key={value}>
-                    <td
-                      className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs"> {/* 追加されたクラス: max-w-xs, 変更されたクラス: whitespace-normal */}
-                      <div className="text-sm font-semibold text-gray-900">{jp}</div>
-                      {descriptionDisplay && (
-                        <div className="text-xs text-gray-500 break-words">{description}</div>
-                      )}
-                    </td>
-                    {roles.map(({id, name, permission}) => (
-                      <td key={id} className="w-24 break-words px-3 py-4 text-sm text-gray-500">
-                        {permission[value] ? "⚪︎" : "x"}
-                      </td>
+                    {roles.map(({name}) => (
+                      <th key={name} scope="col" className="sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 z-10 bg-white">
+                        {name === "@everyone" ? name : `@${name}`}
+                      </th>
                     ))}
                   </tr>
-                ))}
 
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white">
+
+                  {permissionNames.map(({value, jp, description}) => (
+                    // 1つの権限(= 1row)
+                    <tr key={value}>
+                      <td
+                        className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs"> {/* 追加されたクラス: max-w-xs, 変更されたクラス: whitespace-normal */}
+                        <div className="text-sm font-semibold text-gray-900">{jp}</div>
+                        {descriptionDisplay && (
+                          <div className="text-xs text-gray-500 break-words">{description}</div>
+                        )}
+                      </td>
+                      {roles.map(({id, name, permission}) => (
+                        <td key={id} className="w-24 break-words px-3 py-4 text-sm text-gray-500">
+                          {permission[value] ? "⚪︎" : "x"}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
