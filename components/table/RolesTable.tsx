@@ -40,11 +40,14 @@ export default function RolesTable({roles}: Props) {
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 z-10 bg-white">
-                    権限
-                  </th>
-                    {roles.map(({name}) => (
-                      <th key={name} scope="col" className="sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 z-10 bg-white">
+                    <th scope="col"
+                        className="sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 z-10 bg-gray-200">
+                      権限
+                    </th>
+                    {roles.map(({name}, index) => (
+                      <th key={name} scope="col" className={`sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 z-10 bg-gray-200 
+                        ${index === 0 ? 'border-l border-gray-100' : ''} border-r border-gray-100`}
+                      >
                         {name === "@everyone" ? name : `@${name}`}
                       </th>
                     ))}
@@ -57,14 +60,15 @@ export default function RolesTable({roles}: Props) {
                     // 1つの権限(= 1row)
                     <tr key={value}>
                       <td
-                        className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs"> {/* 追加されたクラス: max-w-xs, 変更されたクラス: whitespace-normal */}
+                        className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50">
                         <div className="text-sm font-semibold text-gray-900">{jp}</div>
                         {descriptionDisplay && (
                           <div className="text-xs text-gray-500 break-words">{description}</div>
                         )}
                       </td>
-                      {roles.map(({id, name, permission}) => (
-                        <td key={id} className="w-24 break-words px-3 py-4 text-sm text-gray-500">
+                      {roles.map(({id, name, permission}, index) => (
+                        <td key={id} className={`w-24 break-words px-3 py-4 text-sm text-gray-500 
+                          ${index === 0 ? 'border-l border-gray-100' : ''} border-r border-gray-100 text-center`}>
                           {permission[value] ? "⚪︎" : "x"}
                         </td>
                       ))}
