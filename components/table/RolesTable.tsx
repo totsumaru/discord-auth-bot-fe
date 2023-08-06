@@ -1,12 +1,15 @@
 "use client"
 
 import {permissionNames, role} from "@/app/(private)/dashboard/[guildId]/backend_res";
+import {useState} from "react";
 
 type Props = {
   roles: role[]
 }
 
 export default function RolesTable({roles}: Props) {
+  const [descriptionDisplay, setDescriptionDisplay] = useState<boolean>(true)
+
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -19,6 +22,15 @@ export default function RolesTable({roles}: Props) {
             チャンネル毎、更にこの権限を上書きできるため、チャンネルの権限については「各チャンネルの設定」を確認ください。
           </p>
         </div>
+        <button
+          type="button"
+          className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          onClick={() => {
+            setDescriptionDisplay(state => !state)
+          }}
+        >
+          {descriptionDisplay ? "ロールの説明を閉じる" : "ロールの説明を表示"}
+        </button>
       </div>
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -48,7 +60,9 @@ export default function RolesTable({roles}: Props) {
                     <td
                       className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs"> {/* 追加されたクラス: max-w-xs, 変更されたクラス: whitespace-normal */}
                       <div className="text-sm font-semibold text-gray-900">{jp}</div>
-                      <div className="text-xs text-gray-500 break-words">{description}</div>
+                      {descriptionDisplay && (
+                        <div className="text-xs text-gray-500 break-words">{description}</div>
+                      )}
                     </td>
                     {roles.map(({id, name, permission}) => (
                       <td key={id} className="w-24 break-words px-3 py-4 text-sm text-gray-500">
