@@ -7,6 +7,8 @@ import axios from "axios";
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {role} from "@/app/(private)/dashboard/[guildId]/backend_res";
 import RolesTable from "@/components/table/RolesTable";
+import Spinner from "@/components/loading/Spinner";
+import LoginButton from "@/components/button/LoginButton";
 
 export default function Index({
   params: {guildId}
@@ -37,11 +39,36 @@ export default function Index({
     })
   }, [store.loginUserId])
 
+  supabase.auth.onAuthStateChange(
+    (event, session) => {
+      if (event === 'SIGNED_IN') {
+        // storeにログインユーザーを追加します
+        store.setLoginUserId(session?.user.id || "");
+      } else if (event === 'SIGNED_OUT') {
+        store.setLoginUserId("");
+      }
+    }
+  );
+
   return (
     <>
       <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
         <NavigationBar tabVisible={true}/>
-        <RolesTable roles={roles}/>
+        {store.loginLoading ? (
+          <Spinner/>
+        ) : (
+          store.loginUserId ? (
+            <RolesTable roles={roles}/>
+          ) : (
+            <div className="mt-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Login</h2>
+              <p className="my-6 text-lg leading-8 text-gray-600">
+                Discordでログインをしてください。
+              </p>
+              <LoginButton/>
+            </div>
+          )
+        )}
       </div>
     </>
   )
