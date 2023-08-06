@@ -12,6 +12,7 @@ import ReturnTopButton from "@/components/button/ReturnTopButton";
 import Heading from "@/components/section/Heading";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import ChannelSelectButton from "@/components/button/ChannelSelectButton";
+import ChannelSelectSidebar from "@/components/sidebar/ChannelSelectSidebar";
 
 export default function Index({
   params: {guildId}
@@ -69,6 +70,7 @@ export default function Index({
             <ChannelSelectButton onclickHandler={() => {
               setSidebarOpen(true)
             }}/>
+            <ChannelSelectSidebar open={sidebarOpen} setOpen={setSidebarOpen}/>
           </DashboardContentLayout>
         ) : (
           <ReturnTopButton/>
