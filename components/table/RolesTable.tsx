@@ -82,14 +82,20 @@ export default function RolesTable({roles}: Props) {
                   <thead className="bg-gray-50">
                   <tr>
                     <th scope="col"
-                        className="sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 z-10 bg-gray-200">
-                      権限
+                        className="sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-100 sm:pl-6 z-10 bg-gray-500">
+                      -
                     </th>
-                    {selectedRoles.map(({name}, index) => (
-                      <th key={name} scope="col" className={`sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 z-10 bg-gray-200 
-                        ${index === 0 ? 'border-l border-gray-100' : ''} border-r border-gray-100`}
+                    {selectedRoles.map(({name, color}, index) => (
+                      // ここをBadgeに変更
+                      <th key={name} scope="col"
+                          className={"sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 z-10 bg-gray-200"}
+                          style={{backgroundColor: color ? numberToHexColor(color) : "rgb(107 114 128)"}}
                       >
-                        {name === "@everyone" ? name : `@${name}`}
+                          <span
+                            className="ring-1 ring-gray-400 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600"
+                          >
+                            {name === "@everyone" ? name : `@${name}`}
+                          </span>
                       </th>
                     ))}
                   </tr>
@@ -130,4 +136,12 @@ export default function RolesTable({roles}: Props) {
       </div>
     </div>
   )
+}
+
+function numberToHexColor(code: number): string {
+  let hex = code.toString(16);
+  while (hex.length < 6) {
+    hex = "0" + hex;
+  }
+  return "#" + hex;
 }

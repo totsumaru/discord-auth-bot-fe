@@ -242,6 +242,7 @@ export const permissionNames: Array<{
 export type role = {
   id: string
   name: string
+  color: number
   permission: {
     [key: string]: boolean
   }

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/backend_res.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/backend_res.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/table/RolesTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/RolesTable.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
