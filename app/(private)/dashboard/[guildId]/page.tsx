@@ -27,9 +27,7 @@ export default function Index({
     supabase.auth.getSession().then(({data: {session}}) => {
       const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/server?server_id=${guildId}`
       axios.get(url, {
-        headers: {
-          "Authorization": `Bearer ${session?.access_token}`
-        }
+        headers: {"Authorization": `Bearer ${session?.access_token}`}
       }).then((res) => {
         setRoles(res.data.roles)
       }).catch((e) => {
