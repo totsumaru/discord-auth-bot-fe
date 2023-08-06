@@ -8,7 +8,7 @@ import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {role} from "@/app/(private)/dashboard/[guildId]/backend_res";
 import RolesTable from "@/components/table/RolesTable";
 import Spinner from "@/components/loading/Spinner";
-import Link from "next/link";
+import ReturnTop from "@/components/button/ReturnTop";
 
 export default function Index({
   params: {guildId}
@@ -60,18 +60,7 @@ export default function Index({
           store.loginUserId ? (
             <RolesTable roles={roles}/>
           ) : (
-            <div className="mt-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Login</h2>
-              <p className="my-6 text-lg leading-8 text-gray-600">
-                Topへ戻り、Discordでログインをしてください。
-              </p>
-              <Link
-                href="/"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                トップへ戻る
-              </Link>
-            </div>
+            <ReturnTop/>
           )
         )}
       </div>
