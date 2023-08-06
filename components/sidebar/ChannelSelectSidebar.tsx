@@ -1,6 +1,13 @@
 import {Dispatch, Fragment, ReactNode, SetStateAction} from 'react'
 import {Dialog, Transition} from '@headlessui/react'
-import {XMarkIcon} from '@heroicons/react/24/outline'
+import {
+  ChatBubbleLeftRightIcon,
+  FolderIcon,
+  HashtagIcon,
+  MicrophoneIcon,
+  SpeakerWaveIcon,
+  XMarkIcon
+} from '@heroicons/react/24/outline'
 import {channel} from "@/utils/backend_res";
 
 type Props = {
@@ -56,16 +63,48 @@ function ChannelListContent({
 }) {
   return (
     <div className="mt-2">
-      <p>1</p>
-      {channels && channels.map((channel) => {
-        let name = channel.name
-        if (channel.type !== "category") {
-          name = ">>>" + name
-        }
-        return (
-          <p>{name}</p>
-        )
-      })}
+      {channels.length === 0
+        ? "表示できるチャンネルがありません"
+        : channels.map((channel) => {
+          let icon: ReactNode
+
+          switch (channel.type) {
+            case "text":
+              icon = <HashtagIcon className="h-4 w-4"/>
+              break
+            case "announce":
+              icon = <HashtagIcon className="h-4 w-4"/>
+              break
+            case "forum":
+              icon = <ChatBubbleLeftRightIcon className="h-4 w-4"/>
+              break
+            case "category":
+              icon = <FolderIcon className="h-3 w-3"/>
+              break
+            case "vc":
+              icon = <SpeakerWaveIcon className="h-4 w-4"/>
+              break
+            case "stage":
+              icon = <MicrophoneIcon className="h-4 w-4"/>
+              break
+          }
+
+          return (
+            <li key={channel.id} className={classNames(
+              "list-none", channel.type !== "category" ? "ml-5" : ""
+            )}>
+              <a
+                href={"#"}
+                className={classNames(
+                  'text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-1 rounded-md p-2 pl-3 text-sm leading-6 font-semibold'
+                )}
+              >
+                {icon}
+                {channel.name}
+              </a>
+            </li>
+          )
+        })}
     </div>
   )
 }
@@ -100,4 +139,8 @@ function CloseButton({onclickHandler}: { onclickHandler: () => void }) {
       </button>
     </div>
   )
+}
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
 }
