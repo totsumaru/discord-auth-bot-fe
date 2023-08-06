@@ -1,7 +1,7 @@
 // トップへ戻るボタン(Link)です
 import Link from "next/link";
 
-export default function ReturnTop() {
+export default function ReturnTopButton() {
   return (
     <div className="mt-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Login</h2>

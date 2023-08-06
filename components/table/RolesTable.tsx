@@ -4,6 +4,9 @@ import {permissionNames, role} from "@/app/(private)/dashboard/[guildId]/backend
 import {useEffect, useState} from "react";
 import ServerRoleSelector from "@/components/selector/ServerRoleSelector";
 import TableToggle from "@/components/toggle/TableToggle";
+import DashboardSettingLayout from "@/components/layout/DashboardSettingLayout";
+import SetSelectedRolesButton from "@/components/button/SetSelectedRolesButton";
+import OpenRoleDescriptionButton from "@/components/button/OpenRoleDescriptionButton";
 
 type Props = {
   roles: role[]
@@ -18,58 +21,36 @@ export default function RolesTable({roles}: Props) {
   }, [roles])
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
-      <div className="mt-10 sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-
-          <div className="border-b border-gray-200 pb-5">
-            <h2 className="text-2xl text-base font-semibold leading-6 text-gray-900">サーバー全体の権限</h2>
-            <p className="mt-2 max-w-4xl text-sm text-gray-500">
-              各ロールのデフォルトの権限です。
-            </p>
-          </div>
-
-          {/* ロール選択のセレクター */}
-          <ServerRoleSelector
-            allRoles={roles}
-            selectedRoles={selectedRoles}
-            setSelectedRoles={setSelectedRoles}
-          />
-
-          {/* ボタン */}
-          <div className="flex space-x-2">
-            <button
-              type="button"
-              className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-              onClick={() => {
-                setSelectedRoles(roles)
-              }}
-            >
-              ALL
-            </button>
-
-            <button
-              type="button"
-              className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-              onClick={() => {
-                setSelectedRoles([])
-              }}
-            >
-              NONE
-            </button>
-          </div>
-
-          <button
-            type="button"
-            className="mt-6 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={() => {
-              setDescriptionDisplay(state => !state)
+    <>
+      <DashboardSettingLayout>
+        {/* ロール選択のセレクター */}
+        <ServerRoleSelector
+          allRoles={roles}
+          selectedRoles={selectedRoles}
+          setSelectedRoles={setSelectedRoles}
+        />
+        {/* ボタン */}
+        <div className="flex space-x-2">
+          <SetSelectedRolesButton
+            label={"ALL"}
+            onClickHandler={() => {
+              setSelectedRoles(roles)
             }}
-          >
-            {descriptionDisplay ? "ロールの説明を閉じる" : "ロールの説明を表示"}
-          </button>
+          />
+          <SetSelectedRolesButton
+            label={"NONE"}
+            onClickHandler={() => {
+              setSelectedRoles([])
+            }}
+          />
         </div>
-      </div>
+        <OpenRoleDescriptionButton
+          label={descriptionDisplay ? "ロールの説明を閉じる" : "ロールの説明を表示"}
+          onClickHandler={() => {
+            setDescriptionDisplay(state => !state)
+          }}
+        />
+      </DashboardSettingLayout>
       <div className="mt-4 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -134,7 +115,7 @@ export default function RolesTable({roles}: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -8,7 +8,10 @@ import {role} from "@/app/(private)/dashboard/[guildId]/backend_res";
 import axios from "axios";
 import Spinner from "@/components/loading/Spinner";
 import NavigationBar from "@/components/nav/NavigationBar";
-import ReturnTop from "@/components/button/ReturnTop";
+import ReturnTopButton from "@/components/button/ReturnTopButton";
+import Heading from "@/components/section/Heading";
+import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
+import DashboardSettingLayout from "@/components/layout/DashboardSettingLayout";
 
 export default function Index({
   params: {guildId}
@@ -58,9 +61,16 @@ export default function Index({
           <Spinner/>
         ) : (
           store.loginUserId ? (
-            <>hello</>
+            <DashboardContentLayout>
+              <DashboardSettingLayout>
+                <Heading
+                  title={"チャンネルの権限"}
+                  content={"サーバー全体の設定(デフォルト)から、上書きされたチャンネルの権限です。"}
+                />
+              </DashboardSettingLayout>
+            </DashboardContentLayout>
           ) : (
-            <ReturnTop/>
+            <ReturnTopButton/>
           )
         )}
       </div>

@@ -8,7 +8,9 @@ import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {role} from "@/app/(private)/dashboard/[guildId]/backend_res";
 import RolesTable from "@/components/table/RolesTable";
 import Spinner from "@/components/loading/Spinner";
-import ReturnTop from "@/components/button/ReturnTop";
+import ReturnTopButton from "@/components/button/ReturnTopButton";
+import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
+import Heading from "@/components/section/Heading";
 
 export default function Index({
   params: {guildId}
@@ -58,9 +60,15 @@ export default function Index({
           <Spinner/>
         ) : (
           store.loginUserId ? (
-            <RolesTable roles={roles}/>
+            <DashboardContentLayout>
+              <Heading
+                title={"サーバー全体の権限"}
+                content={"各ロールのデフォルトの権限です。"}
+              />
+              <RolesTable roles={roles}/>
+            </DashboardContentLayout>
           ) : (
-            <ReturnTop/>
+            <ReturnTopButton/>
           )
         )}
       </div>
