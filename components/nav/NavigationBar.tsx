@@ -48,8 +48,7 @@ export default function NavigationBar({tabVisible}: Props) {
                   />
                 </div>
 
-                {tabVisible
-                  ? (
+                {tabVisible ? (
                     <>
                       {/* Tab */}
                       <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
