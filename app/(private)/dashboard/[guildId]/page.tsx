@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import useUserStore from "@/store/user";
 import axios from "axios";
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
-import {role} from "@/app/(private)/dashboard/[guildId]/backend_res";
+import {role} from "@/utils/backend_res";
 import RolesTable from "@/components/table/RolesTable";
 import Spinner from "@/components/loading/Spinner";
 import ReturnTopButton from "@/components/button/ReturnTopButton";

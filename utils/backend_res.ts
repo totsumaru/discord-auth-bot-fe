@@ -248,6 +248,8 @@ export type role = {
   }
 }
 
-export type backendResRoles = {
-  roles: Array<role>
+export type channel = {
+  id: string
+  name: string
+  type: string
 }

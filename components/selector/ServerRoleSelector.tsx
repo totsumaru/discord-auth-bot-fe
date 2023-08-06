@@ -1,7 +1,7 @@
 import {Fragment} from 'react'
 import {Listbox, Transition} from '@headlessui/react'
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
-import {role} from "@/app/(private)/dashboard/[guildId]/backend_res";
+import {role} from "@/utils/backend_res";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')

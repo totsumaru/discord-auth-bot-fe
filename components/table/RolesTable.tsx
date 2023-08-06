@@ -1,6 +1,6 @@
 "use client"
 
-import {permissionNames, role} from "@/app/(private)/dashboard/[guildId]/backend_res";
+import {permissionNames, role} from "@/utils/backend_res";
 import {useEffect, useState} from "react";
 import ServerRoleSelector from "@/components/selector/ServerRoleSelector";
 import TableToggle from "@/components/toggle/TableToggle";
