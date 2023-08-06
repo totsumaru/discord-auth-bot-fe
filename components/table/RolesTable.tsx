@@ -85,7 +85,7 @@ export default function RolesTable({roles}: Props) {
                         className="sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-100 sm:pl-6 z-10 bg-gray-500">
                       -
                     </th>
-                    {selectedRoles.map(({name, color}, index) => (
+                    {selectedRoles.map(({name, color}) => (
                       // ここをBadgeに変更
                       <th key={name} scope="col"
                           className={"sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 z-10 bg-gray-200"}
