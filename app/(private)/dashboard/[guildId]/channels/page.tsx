@@ -70,7 +70,11 @@ export default function Index({
             <ChannelSelectButton onclickHandler={() => {
               setSidebarOpen(true)
             }}/>
-            <ChannelSelectSidebar open={sidebarOpen} setOpen={setSidebarOpen}/>
+            <ChannelSelectSidebar
+              open={sidebarOpen}
+              setOpen={setSidebarOpen}
+              channels={channels}
+            />
           </DashboardContentLayout>
         ) : (
           <ReturnTopButton/>
