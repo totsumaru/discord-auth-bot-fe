@@ -4,16 +4,22 @@ import {Fragment} from 'react'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import LoginButton from "@/components/button/LoginButton";
+import Link from "next/link";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
+const tabClassFocus = "inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+const tabClassNotFocus = "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+
 type Props = {
   tabVisible: boolean
+  guildId?: string
+  isServer?: boolean
 }
 
-export default function NavigationBar({tabVisible}: Props) {
+export default function NavigationBar({tabVisible, guildId, isServer}: Props) {
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({open}) => (
@@ -52,18 +58,18 @@ export default function NavigationBar({tabVisible}: Props) {
                     <>
                       {/* Tab */}
                       <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a
-                          href="#"
-                          className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                        <Link
+                          href={`/dashboard/${guildId}`}
+                          className={isServer ? tabClassFocus : tabClassNotFocus}
                         >
                           サーバー全体の設定
-                        </a>
-                        <a
-                          href="#"
-                          className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        </Link>
+                        <Link
+                          href={`/dashboard/${guildId}/channels`}
+                          className={isServer ? tabClassNotFocus : tabClassFocus}
                         >
                           各チャンネルの設定
-                        </a>
+                        </Link>
                       </div>
                     </>
                   )
