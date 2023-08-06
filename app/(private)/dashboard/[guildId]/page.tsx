@@ -11,6 +11,7 @@ import Spinner from "@/components/loading/Spinner";
 import ReturnTopButton from "@/components/button/ReturnTopButton";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import Heading from "@/components/section/Heading";
+import TopClientLayout from "@/components/layout/TopClientLayout";
 
 export default function Index({
   params: {guildId}
@@ -20,10 +21,6 @@ export default function Index({
   const supabase = createClientComponentClient()
   const store = useUserStore()
   const [roles, setRoles] = useState<role[]>([])
-
-  useEffect(() => {
-    store.initialize()
-  }, [])
 
   useEffect(() => {
     // backendからサーバー全体のロールの権限を取得します
@@ -41,19 +38,8 @@ export default function Index({
     })
   }, [store.loginUserId])
 
-  supabase.auth.onAuthStateChange(
-    (event, session) => {
-      if (event === 'SIGNED_IN') {
-        // storeにログインユーザーを追加します
-        store.setLoginUserId(session?.user.id || "");
-      } else if (event === 'SIGNED_OUT') {
-        store.setLoginUserId("");
-      }
-    }
-  );
-
   return (
-    <>
+    <TopClientLayout>
       <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
         <NavigationBar tabVisible={true} guildId={guildId} isServer={true}/>
         {store.loginLoading ? (
@@ -72,6 +58,6 @@ export default function Index({
           )
         )}
       </div>
-    </>
+    </TopClientLayout>
   )
 }

@@ -14,9 +14,10 @@ type Props = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>;
   channels: channel[]
+  setCurrentChannelId: Dispatch<SetStateAction<string>>;
 }
 
-export default function ChannelSelectSidebar({open, setOpen, channels}: Props) {
+export default function ChannelSelectSidebar({open, setOpen, channels, setCurrentChannelId}: Props) {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => {
@@ -41,7 +42,7 @@ export default function ChannelSelectSidebar({open, setOpen, channels}: Props) {
                       </div>
 
                       {/* チャンネル一覧の内容 */}
-                      <ChannelListContent channels={channels}/>
+                      <ChannelListContent channels={channels} setCurrentChannelId={setCurrentChannelId}/>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
                   </div>
@@ -57,9 +58,11 @@ export default function ChannelSelectSidebar({open, setOpen, channels}: Props) {
 
 // チャンネル一覧の内容です
 function ChannelListContent({
-  channels
+  channels,
+  setCurrentChannelId,
 }: {
   channels: channel[]
+  setCurrentChannelId: Dispatch<SetStateAction<string>>;
 }) {
   return (
     <div className="mt-2">
@@ -93,15 +96,15 @@ function ChannelListContent({
             <li key={channel.id} className={classNames(
               "list-none", channel.type !== "category" ? "ml-5" : ""
             )}>
-              <a
-                href={"#"}
+              <button
                 className={classNames(
-                  'text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-1 rounded-md p-2 pl-3 text-sm leading-6 font-semibold'
+                  'w-full text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-1 rounded-md p-2 pl-3 text-sm leading-6 font-semibold'
                 )}
+                onClick={() => setCurrentChannelId(channel.id)}
               >
                 {icon}
                 {channel.name}
-              </a>
+              </button>
             </li>
           )
         })}
