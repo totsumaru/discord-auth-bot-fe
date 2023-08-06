@@ -55,11 +55,11 @@ export const permissionNames: Array<{
   {
     value: "administrator",
     jp: "管理者",
-    description: "この権限を持つメンバーは、デフォルトでチャンネルを閲覧できます（プライベートチャンネルを除く）。"
+    description: "管理者権限です"
   }, {
     value: "view_channels",
     jp: "チャンネルを見る",
-    description: "チャンネルを見れます",
+    description: "この権限を持つメンバーは、デフォルトでチャンネルを閲覧できます（プライベートチャンネルを除く）。",
   }, {
     value: "manage_channels",
     jp: "チャンネルの管理",

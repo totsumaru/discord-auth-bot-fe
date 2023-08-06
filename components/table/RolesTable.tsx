@@ -27,12 +27,15 @@ export default function RolesTable({roles}: Props) {
               <table className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                  <th scope="col"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                     権限
                   </th>
                   {roles.map(({name}) => (
-                    <th key={name} scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      {name}
+                    <th key={name} scope="col"
+                        className="whitespace-nowrap w-24 px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      {name === "@everyone" ? name : `@${name}`}
                     </th>
                   ))}
                 </tr>
@@ -42,11 +45,13 @@ export default function RolesTable({roles}: Props) {
                 {permissionNames.map(({value, jp, description}) => (
                   // 1つの権限(= 1row)
                   <tr key={value}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                      {jp}
+                    <td
+                      className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs"> {/* 追加されたクラス: max-w-xs, 変更されたクラス: whitespace-normal */}
+                      <div className="text-sm font-semibold text-gray-900">{jp}</div>
+                      <div className="text-xs text-gray-500 break-words">{description}</div>
                     </td>
                     {roles.map(({id, name, permission}) => (
-                      <td key={id} className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <td key={id} className="w-24 break-words px-3 py-4 text-sm text-gray-500">
                         {permission[value] ? "⚪︎" : "x"}
                       </td>
                     ))}
