@@ -15,15 +15,17 @@ export default function Heading({
 }: Props) {
   return (
     <div className="border-b border-gray-200 pb-5">
-      <div className="mb-4">
+      <div className="p-2 mb-4 border-2 shadow-sm rounded-md flex items-center bg-white max-w-sm">
         <img
-          className="inline-block h-10 w-10 rounded-full"
+          className="h-10 w-10 rounded-full"
           src={serverIconUrl || "/discord_icon.svg"}
           alt="server-icon"
         />
-        <h3 className="text-base font-semibold leading-6 text-gray-900">
-          {serverName}
-        </h3>
+        <div className="ml-3">
+          <h3 className="text-base font-semibold leading-6 text-gray-900">
+            {serverName}
+          </h3>
+        </div>
       </div>
       <h2 className="text-2xl font-semibold leading-6 text-gray-900">
         {title}
