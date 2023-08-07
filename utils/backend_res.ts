@@ -1,3 +1,12 @@
+export const ChannelType = {
+  text: "text",
+  category: "category",
+  announce: "announce",
+  forum: "forum",
+  vc: "vc",
+  stage: "stage",
+}
+
 // サーバー全体の権限のレスポンスです
 // `/api/server`
 export type backendResServer = {
@@ -43,12 +52,3 @@ export type backendResGuilds = {
   name: string
   icon_url: string
 }[]
-
-export const ChannelType = {
-  text: "text",
-  category: "category",
-  announce: "announce",
-  forum: "forum",
-  vc: "vc",
-  stage: "stage",
-}
