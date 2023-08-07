@@ -74,13 +74,13 @@ export default function RolesTable({roles, tableType}: Props) {
         {/* ボタン */}
         <div className="flex space-x-2">
           <SetSelectedRolesButton
-            label={"ALL"}
+            label={"全て表示"}
             onClickHandler={() => {
               setSelectedRoles(roles)
             }}
           />
           <SetSelectedRolesButton
-            label={"NONE"}
+            label={"表示をクリア"}
             onClickHandler={() => {
               setSelectedRoles([])
             }}
