@@ -82,10 +82,8 @@ export default function NavigationBar({tabVisible, guildId, isServer}: Props) {
                 className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* プロフィールのドロップダウン */}
                 <Menu as="div" className="relative ml-3">
-                  <div>
-                    {/* ログインボタン */}
-                    <LoginButton/>
-                  </div>
+                  {/* ログインボタン */}
+                  <LoginButton/>
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-200"
