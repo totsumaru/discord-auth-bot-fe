@@ -1,22 +1,23 @@
 "use client"
 
-import {permissionInfo, role} from "@/utils/backend_res";
+import {backendResServer} from "@/utils/backend_res";
 import {useEffect, useState} from "react";
 import ServerRoleSelector from "@/components/selector/ServerRoleSelector";
 import TableToggle from "@/components/toggle/TableToggle";
 import DashboardSettingLayout from "@/components/layout/DashboardSettingLayout";
 import SetSelectedRolesButton from "@/components/button/SetSelectedRolesButton";
 import OpenRoleDescriptionButton from "@/components/button/OpenRoleDescriptionButton";
+import {tableServerRolesInfo} from "@/components/table/table_roles";
 
 type Props = {
-  roles: role[]
+  roles: backendResServer[]
 }
 
 // ロール表示のテーブルです
 // - テーブルの設定はこの中に記述します
 export default function RolesTable({roles}: Props) {
   const [descriptionDisplay, setDescriptionDisplay] = useState<boolean>(true)
-  const [selectedRoles, setSelectedRoles] = useState<role[]>(roles)
+  const [selectedRoles, setSelectedRoles] = useState<backendResServer[]>(roles)
 
   useEffect(() => {
     setSelectedRoles(roles)
@@ -86,7 +87,7 @@ export default function RolesTable({roles}: Props) {
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
 
-                  {permissionInfo.map(({value, jp, description}) => (
+                  {tableServerRolesInfo.map(({value, jp, description}) => (
                     // 1つの権限(= 1row)
                     <tr key={value}>
                       <td

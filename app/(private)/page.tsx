@@ -9,19 +9,13 @@ import Guilds from "@/components/card/Guilds";
 import Spinner from "@/components/loading/Spinner";
 import LoginButton from "@/components/button/LoginButton";
 import TopClientLayout from "@/components/layout/TopClientLayout";
+import {backendResGuilds} from "@/utils/backend_res";
 
-type backendRes = {
-  servers: [{
-    id: string
-    name: string
-    icon_url: string
-  }]
-}
 
 // 管理できるサーバーの一覧を表示します
 export default function Index() {
   const supabase = createClientComponentClient()
-  const [backend, setBackend] = useState<backendRes>()
+  const [guilds, setGuilds] = useState<backendResGuilds>()
   const [backendLoading, setBackendLoading] = useState<boolean>(true)
   const store = useUserStore()
 
@@ -33,7 +27,7 @@ export default function Index() {
         axios.get(`${process.env.NEXT_PUBLIC_BE_URL!}/api/guild`, {
           headers: {"Authorization": `Bearer ${session.provider_token}`}
         }).then((res) => {
-          setBackend(res.data)
+          setGuilds(res.data)
           setBackendLoading(false)
         })
       }
@@ -58,8 +52,8 @@ export default function Index() {
                     </p>
                   </div>
                   {backendLoading ? <Spinner/> : (
-                    backend?.servers && (
-                      <Guilds servers={backend?.servers}/>
+                    guilds && (
+                      <Guilds servers={guilds}/>
                     ))
                   }
                 </>

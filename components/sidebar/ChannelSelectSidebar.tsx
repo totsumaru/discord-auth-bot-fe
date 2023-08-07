@@ -8,12 +8,12 @@ import {
   SpeakerWaveIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline'
-import {channel} from "@/utils/backend_res";
+import {backendResChannelList, ChannelType} from "@/utils/backend_res";
 
 type Props = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>;
-  channels: channel[]
+  channels: backendResChannelList
   setCurrentChannelId: Dispatch<SetStateAction<string>>;
 }
 
@@ -60,7 +60,7 @@ function ChannelListContent({
   channels,
   setCurrentChannelId,
 }: {
-  channels: channel[]
+  channels: backendResChannelList
   setCurrentChannelId: Dispatch<SetStateAction<string>>;
 }) {
   return (
@@ -71,22 +71,22 @@ function ChannelListContent({
           let icon: ReactNode
 
           switch (channel.type) {
-            case "text":
+            case ChannelType.text:
               icon = <HashtagIcon className="h-4 w-4"/>
               break
-            case "announce":
+            case ChannelType.announce:
               icon = <HashtagIcon className="h-4 w-4"/>
               break
-            case "forum":
+            case ChannelType.forum:
               icon = <ChatBubbleLeftRightIcon className="h-4 w-4"/>
               break
-            case "category":
+            case ChannelType.category:
               icon = <FolderIcon className="h-3 w-3"/>
               break
-            case "vc":
+            case ChannelType.vc:
               icon = <SpeakerWaveIcon className="h-4 w-4"/>
               break
-            case "stage":
+            case ChannelType.stage:
               icon = <MicrophoneIcon className="h-4 w-4"/>
               break
           }

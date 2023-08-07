@@ -4,7 +4,7 @@
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import useUserStore from "@/store/user";
 import React, {useEffect, useState} from "react";
-import {channel, role} from "@/utils/backend_res";
+import {backendResChannelList, backendResServer} from "@/utils/backend_res";
 import axios from "axios";
 import Spinner from "@/components/loading/Spinner";
 import NavigationBar from "@/components/nav/NavigationBar";
@@ -23,10 +23,10 @@ export default function Index({
 }) {
   const supabase = createClientComponentClient()
   const store = useUserStore()
-  const [channels, setChannels] = useState<channel[]>([])
+  const [channels, setChannels] = useState<backendResChannelList>([])
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [currentChannelId, setCurrentChannelId] = useState<string>("")
-  const [roles, setRoles] = useState<role[]>([])
+  const [roles, setRoles] = useState<backendResServer[]>([])
 
   useEffect(() => {
     // backendからチャンネル一覧を取得します

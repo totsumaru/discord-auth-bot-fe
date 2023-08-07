@@ -1,16 +1,16 @@
 import {Fragment} from 'react'
 import {Listbox, Transition} from '@headlessui/react'
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
-import {role} from "@/utils/backend_res";
+import {backendResServer} from "@/utils/backend_res";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
 type Props = {
-  allRoles: role[]
-  selectedRoles: role[]
-  setSelectedRoles: (roles: role[]) => void
+  allRoles: backendResServer[]
+  selectedRoles: backendResServer[]
+  setSelectedRoles: (roles: backendResServer[]) => void
 }
 
 // 表示するロールのセレクターです
