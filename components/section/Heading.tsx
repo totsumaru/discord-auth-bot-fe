@@ -15,9 +15,9 @@ export default function Heading({
 }: Props) {
   return (
     <div className="border-b border-gray-200 pb-5">
-      <div className="p-2 mb-4 border-2 shadow-sm rounded-md flex items-center bg-white max-w-sm">
+      <div className="p-2 pr-3 mb-4 border-2 border-indigo-300 rounded-md inline-flex items-center bg-transparent">
         <img
-          className="h-10 w-10 rounded-full"
+          className="h-8 w-8 rounded-full"
           src={serverIconUrl || "/discord_icon.svg"}
           alt="server-icon"
         />
