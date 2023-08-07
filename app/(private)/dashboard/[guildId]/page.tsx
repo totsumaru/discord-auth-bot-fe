@@ -21,6 +21,8 @@ export default function Index({
   const supabase = createClientComponentClient()
   const store = useUserStore()
   const [roles, setRoles] = useState<role[]>([])
+  const [guildName, setGuildName] = useState<string>("")
+  const [guildIconUrl, setGuildIconUrl] = useState<string>("")
 
   useEffect(() => {
     // backendからサーバー全体のロールの権限を取得します
@@ -30,6 +32,8 @@ export default function Index({
           .then((res) => {
             // 全ロールを保存します
             setRoles(res.roles)
+            setGuildName(res.server_name)
+            setGuildIconUrl(res.server_icon_url)
           }).catch(e => {
           console.error(e)
         })
@@ -49,6 +53,8 @@ export default function Index({
               <Heading
                 title={"サーバー全体の権限"}
                 content={"各ロールのデフォルトの権限です。"}
+                serverName={guildName}
+                serverIconUrl={guildIconUrl}
               />
               <RolesTable roles={roles} tableType={"server"}/>
             </DashboardContentLayout>

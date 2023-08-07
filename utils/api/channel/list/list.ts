@@ -7,6 +7,8 @@ import axios from "axios";
 
 // バックエンドからのレスポンスです
 type ApiChannelListRes = {
+  server_name: string
+  server_icon_url: string
   channels: channel[]
 }
 

@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/table/RolesTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/RolesTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/button/OpenRoleDescriptionButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/button/OpenRoleDescriptionButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layout/DashboardContentLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/DashboardContentLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/section/Heading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/section/Heading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/channel/list/list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/channel/list/list.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/api/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/server/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +47,7 @@
     "go.sdk.automatically.set": "true",
     "javascript.nodejs.core.library.configured.version": "18.12.0",
     "javascript.nodejs.core.library.typings.version": "18.17.1",
-    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/utils/api/channel",
+    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/store",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -52,11 +58,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/store" />
       <recent name="$PROJECT_DIR$/utils/api/channel" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/dashboard" />
       <recent name="$PROJECT_DIR$/components/button" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/utils/api/channel/list" />

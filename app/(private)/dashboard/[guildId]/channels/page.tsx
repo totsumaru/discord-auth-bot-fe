@@ -27,6 +27,8 @@ export default function Index({
   const [allChannels, setAllChannels] = useState<channel[]>([])
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [currentChannelId, setCurrentChannelId] = useState<string>("")
+  const [guildName, setGuildName] = useState<string>("")
+  const [guildIconUrl, setGuildIconUrl] = useState<string>("")
 
   const [currentChannel, setCurrentChannel] = useState<channel>()
   const [roles, setRoles] = useState<role[]>([])
@@ -38,6 +40,8 @@ export default function Index({
         GetChannelList({accessToken: session.access_token, guildId: guildId})
           .then(res => {
             setAllChannels(res.channels)
+            setGuildName(res.server_name)
+            setGuildIconUrl(res.server_icon_url)
           }).catch(e => {
           console.error(e)
         })
@@ -74,6 +78,8 @@ export default function Index({
               <Heading
                 title={"チャンネルの権限"}
                 content={"サーバー全体の設定(デフォルト)から、上書きされたチャンネルの権限です。"}
+                serverName={guildName}
+                serverIconUrl={guildIconUrl}
               />
               {/* サイドバー表示ボタン*/}
               <ChannelSelectButton onclickHandler={() => {
