@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/backend_res_type.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/page.tsx" afterDir="false" />
@@ -12,7 +13,8 @@
       <change beforePath="$PROJECT_DIR$/components/selector/ServerRoleSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/selector/ServerRoleSelector.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/sidebar/ChannelSelectSidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/ChannelSelectSidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/table/RolesTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/RolesTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/backend_res.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/backend_res.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/table_roles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/table_roles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/backend_res.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,41 +37,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;link-channel&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.17.1&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.TypeScript&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "link-channel",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "javascript.nodejs.core.library.configured.version": "18.12.0",
+    "javascript.nodejs.core.library.typings.version": "18.17.1",
+    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/utils/api/channel",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.TypeScript",
+    "ts.external.directory.path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/api/channel" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/dashboard" />
       <recent name="$PROJECT_DIR$/components/button" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/components/table" />
+      <recent name="$PROJECT_DIR$/utils/api/channel/list" />
+      <recent name="$PROJECT_DIR$/utils/api/server" />
       <recent name="$PROJECT_DIR$/utils" />
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/app/(private)" />
-      <recent name="$PROJECT_DIR$/app/(public)" />
+      <recent name="$PROJECT_DIR$/utils/api" />
+      <recent name="$PROJECT_DIR$/components/table" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

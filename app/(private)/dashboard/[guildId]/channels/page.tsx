@@ -4,8 +4,7 @@
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import useUserStore from "@/store/user";
 import React, {useEffect, useState} from "react";
-import {backendResChannelList, backendResServer} from "@/utils/backend_res";
-import axios from "axios";
+import {channel, role} from "@/utils/backend_res_type";
 import Spinner from "@/components/loading/Spinner";
 import NavigationBar from "@/components/nav/NavigationBar";
 import ReturnTopButton from "@/components/button/ReturnTopButton";
@@ -15,6 +14,8 @@ import ChannelSelectButton from "@/components/button/ChannelSelectButton";
 import ChannelSelectSidebar from "@/components/sidebar/ChannelSelectSidebar";
 import RolesTable from "@/components/table/RolesTable";
 import TopClientLayout from "@/components/layout/TopClientLayout";
+import {GetChannelList} from "@/utils/api/channel/list/list";
+import {GetChannel} from "@/utils/api/channel/channel";
 
 export default function Index({
   params: {guildId}
@@ -23,40 +24,39 @@ export default function Index({
 }) {
   const supabase = createClientComponentClient()
   const store = useUserStore()
-  const [channels, setChannels] = useState<backendResChannelList>([])
+  const [allChannels, setAllChannels] = useState<channel[]>([])
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [currentChannelId, setCurrentChannelId] = useState<string>("")
-  const [roles, setRoles] = useState<backendResServer[]>([])
+
+  const [currentChannel, setCurrentChannel] = useState<channel>()
+  const [roles, setRoles] = useState<role[]>([])
 
   useEffect(() => {
     // backendからチャンネル一覧を取得します
     supabase.auth.getSession().then(({data: {session}}) => {
-      const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/channel/list?server_id=${guildId}`
-      axios.get(url, {
-        headers: {"Authorization": `Bearer ${session?.access_token}`}
-      }).then((res) => {
-        setChannels(res.data.channels)
-      }).catch((e) => {
-        console.error(e)
-      })
+      if (session) {
+        GetChannelList({accessToken: session.access_token, guildId: guildId})
+          .then(res => {
+            setAllChannels(res.channels)
+          }).catch(e => {
+          console.error(e)
+        })
+      }
     })
   }, [store.loginUserId])
 
   useEffect(() => {
     if (currentChannelId) {
       supabase.auth.getSession().then(({data: {session}}) => {
-        const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/channel?server_id=${guildId}&channel_id=${currentChannelId}`
-        console.log(url)
-        axios.get(url, {
-          headers: {
-            "Authorization": `Bearer ${session?.access_token}`
-          }
-        }).then((res) => {
-          setRoles(res.data.roles)
-          console.log(res.data)
-        }).catch((e) => {
-          console.error(e)
-        })
+        if (session) {
+          GetChannel({accessToken: session.access_token, guildId: guildId, channelId: currentChannelId})
+            .then(res => {
+              setCurrentChannel(res.channel)
+              setRoles(res.roles)
+            }).catch(e => {
+            console.error(e)
+          })
+        }
       })
     }
   }, [currentChannelId])
@@ -83,11 +83,11 @@ export default function Index({
               <ChannelSelectSidebar
                 open={sidebarOpen}
                 setOpen={setSidebarOpen}
-                channels={channels}
+                channels={allChannels}
                 setCurrentChannelId={setCurrentChannelId}
               />
               {currentChannelId && (
-                <RolesTable roles={roles}/>
+                <RolesTable roles={roles} tableType={currentChannel?.type!}/>
               )}
             </DashboardContentLayout>
           ) : (

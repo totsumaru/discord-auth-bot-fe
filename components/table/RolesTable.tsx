@@ -1,23 +1,62 @@
 "use client"
 
-import {backendResServer} from "@/utils/backend_res";
+import {
+  ChannelType,
+  ChannelTypeAnnounce,
+  ChannelTypeCategory,
+  ChannelTypeForum,
+  ChannelTypeStage,
+  ChannelTypeText,
+  ChannelTypeVC,
+  role
+} from "@/utils/backend_res_type";
 import {useEffect, useState} from "react";
 import ServerRoleSelector from "@/components/selector/ServerRoleSelector";
 import TableToggle from "@/components/toggle/TableToggle";
 import DashboardSettingLayout from "@/components/layout/DashboardSettingLayout";
 import SetSelectedRolesButton from "@/components/button/SetSelectedRolesButton";
 import OpenRoleDescriptionButton from "@/components/button/OpenRoleDescriptionButton";
-import {tableServerRolesInfo} from "@/components/table/table_roles";
+import {
+  tableAnnounceChannelRolesInfo,
+  tableCategoryRolesInfo,
+  tableForumChannelRolesInfo,
+  tableServerRolesInfo,
+  tableStageChannelRolesInfo,
+  tableTextChannelRolesInfo,
+  tableVCRolesInfo
+} from "@/components/table/table_roles";
+import {numberToHexColor} from "@/utils/hex_color";
+import {roleInfo} from "@/utils/role_info";
 
 type Props = {
-  roles: backendResServer[]
+  tableType: ChannelType | "server"
+  roles: role[]
 }
 
 // ロール表示のテーブルです
 // - テーブルの設定はこの中に記述します
-export default function RolesTable({roles}: Props) {
-  const [descriptionDisplay, setDescriptionDisplay] = useState<boolean>(true)
-  const [selectedRoles, setSelectedRoles] = useState<backendResServer[]>(roles)
+export default function RolesTable({roles, tableType}: Props) {
+  const [descriptionOpen, setDescriptionOpen] = useState<boolean>(true) // ロールの説明を表示する状態です
+  const [selectedRoles, setSelectedRoles] = useState<role[]>(roles) // 表示させているロールです
+
+  const displayPermissions: roleInfo[] = (() => {
+    switch (tableType) {
+      case "server":
+        return tableServerRolesInfo
+      case ChannelTypeText:
+        return tableTextChannelRolesInfo
+      case ChannelTypeCategory:
+        return tableCategoryRolesInfo
+      case ChannelTypeAnnounce:
+        return tableAnnounceChannelRolesInfo
+      case ChannelTypeForum:
+        return tableForumChannelRolesInfo
+      case ChannelTypeVC:
+        return tableVCRolesInfo
+      case ChannelTypeStage:
+        return tableStageChannelRolesInfo
+    }
+  })()
 
   useEffect(() => {
     setSelectedRoles(roles)
@@ -30,7 +69,7 @@ export default function RolesTable({roles}: Props) {
         <ServerRoleSelector
           allRoles={roles}
           selectedRoles={selectedRoles}
-          setSelectedRoles={setSelectedRoles}
+          setSelectedRoles={() => setSelectedRoles}
         />
         {/* ボタン */}
         <div className="flex space-x-2">
@@ -48,9 +87,9 @@ export default function RolesTable({roles}: Props) {
           />
         </div>
         <OpenRoleDescriptionButton
-          label={descriptionDisplay ? "ロールの説明を閉じる" : "ロールの説明を表示"}
+          label={descriptionOpen ? "ロールの説明を閉じる" : "ロールの説明を表示"}
           onClickHandler={() => {
-            setDescriptionDisplay(state => !state)
+            setDescriptionOpen(state => !state)
           }}
         />
       </DashboardSettingLayout>
@@ -87,13 +126,13 @@ export default function RolesTable({roles}: Props) {
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
 
-                  {tableServerRolesInfo.map(({value, jp, description}) => (
+                  {displayPermissions && displayPermissions.map(({value, jp, description}) => (
                     // 1つの権限(= 1row)
                     <tr key={value}>
                       <td
                         className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50">
                         <div className="text-sm font-semibold text-gray-900">{jp}</div>
-                        {descriptionDisplay && (
+                        {descriptionOpen && (
                           <div
                             className="text-xs text-gray-500 break-words">{description}</div>
                         )}
@@ -110,7 +149,6 @@ export default function RolesTable({roles}: Props) {
                       ))}
                     </tr>
                   ))}
-
                   </tbody>
                 </table>
               </div>
@@ -122,10 +160,3 @@ export default function RolesTable({roles}: Props) {
   )
 }
 
-function numberToHexColor(code: number): string {
-  let hex = code.toString(16);
-  while (hex.length < 6) {
-    hex = "0" + hex;
-  }
-  return "#" + hex;
-}

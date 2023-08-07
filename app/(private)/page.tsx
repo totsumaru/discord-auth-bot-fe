@@ -1,7 +1,6 @@
 "use client"
 
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
-import axios from "axios";
 import {useEffect, useState} from "react";
 import useUserStore from "@/store/user";
 import NavigationBar from "@/components/nav/NavigationBar";
@@ -9,13 +8,13 @@ import Guilds from "@/components/card/Guilds";
 import Spinner from "@/components/loading/Spinner";
 import LoginButton from "@/components/button/LoginButton";
 import TopClientLayout from "@/components/layout/TopClientLayout";
-import {backendResGuilds} from "@/utils/backend_res";
-
+import {guild} from "@/utils/backend_res_type";
+import {GetGuilds} from "@/utils/api/guild/guild";
 
 // 管理できるサーバーの一覧を表示します
 export default function Index() {
   const supabase = createClientComponentClient()
-  const [guilds, setGuilds] = useState<backendResGuilds>()
+  const [guilds, setGuilds] = useState<guild[]>()
   const [backendLoading, setBackendLoading] = useState<boolean>(true)
   const store = useUserStore()
 
@@ -24,11 +23,12 @@ export default function Index() {
     supabase.auth.getSession().then(({data: {session}}) => {
       // loginUserIdが入ったタイミング(ログインorログイン状態でリロード)で、バックエンドから1度だけ取得します
       if (session?.provider_token && store.loginUserId) {
-        axios.get(`${process.env.NEXT_PUBLIC_BE_URL!}/api/guild`, {
-          headers: {"Authorization": `Bearer ${session.provider_token}`}
-        }).then((res) => {
-          setGuilds(res.data)
-          setBackendLoading(false)
+        GetGuilds({provider_token: session.provider_token})
+          .then(res => {
+            setGuilds(res.servers)
+            setBackendLoading(false)
+          }).catch(e => {
+          console.error(e)
         })
       }
     })
