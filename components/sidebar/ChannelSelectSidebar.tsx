@@ -29,7 +29,7 @@ type Props = {
 export default function ChannelSelectSidebar({open, setOpen, channels, setCurrentChannelId}: Props) {
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={() => {
+      <Dialog as="div" className="relative z-20" onClose={() => {
         setOpen(false)
       }}>
         <div className="fixed inset-0"/>

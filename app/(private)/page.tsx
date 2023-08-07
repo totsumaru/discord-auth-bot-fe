@@ -6,10 +6,10 @@ import useUserStore from "@/store/user";
 import NavigationBar from "@/components/nav/NavigationBar";
 import Guilds from "@/components/card/Guilds";
 import Spinner from "@/components/loading/Spinner";
-import LoginButton from "@/components/button/LoginButton";
 import TopClientLayout from "@/components/layout/TopClientLayout";
 import {guild} from "@/utils/backend_res_type";
 import {GetGuilds} from "@/utils/api/guild/guild";
+import LoginSection from "@/components/section/LoginSection";
 
 // 管理できるサーバーの一覧を表示します
 export default function Index() {
@@ -58,13 +58,7 @@ export default function Index() {
                   }
                 </>
               ) : (
-                <div className="mx-auto max-w-2xl lg:mx-0">
-                  <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Login</h2>
-                  <p className="my-6 text-lg leading-8 text-gray-600">
-                    Discordでログインをしてください。
-                  </p>
-                  <LoginButton/>
-                </div>
+                <LoginSection/>
               )
             )}
           </div>

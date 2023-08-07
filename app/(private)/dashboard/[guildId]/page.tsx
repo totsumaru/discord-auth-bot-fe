@@ -6,12 +6,12 @@ import useUserStore from "@/store/user";
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import RolesTable from "@/components/table/RolesTable";
 import Spinner from "@/components/loading/Spinner";
-import ReturnTopButton from "@/components/button/ReturnTopButton";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import Heading from "@/components/section/Heading";
 import TopClientLayout from "@/components/layout/TopClientLayout";
 import {GetAllRoles} from "@/utils/api/server/server";
 import {role} from "@/utils/backend_res_type";
+import LoginSection from "@/components/section/LoginSection";
 
 export default function Index({
   params: {guildId}
@@ -53,7 +53,7 @@ export default function Index({
               <RolesTable roles={roles} tableType={"server"}/>
             </DashboardContentLayout>
           ) : (
-            <ReturnTopButton/>
+            <LoginSection/>
           )
         )}
       </div>
