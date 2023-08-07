@@ -1,20 +1,16 @@
-import {Fragment} from 'react'
+import {Dispatch, Fragment, SetStateAction} from 'react'
 import {Listbox, Transition} from '@headlessui/react'
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
+import {role} from "@/utils/backend_res_type";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
 type Props = {
-  allRoles: propsRole[]
-  selectedRoles: propsRole[]
-  setSelectedRoles: (roles: propsRole[]) => void
-}
-
-type propsRole = {
-  id: string
-  name: string
+  allRoles: role[]
+  selectedRoles: role[]
+  setSelectedRoles: Dispatch<SetStateAction<role[]>>;
 }
 
 // 表示するロールのセレクターです

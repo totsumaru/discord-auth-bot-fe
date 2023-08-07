@@ -69,7 +69,7 @@ export default function RolesTable({roles, tableType}: Props) {
         <ServerRoleSelector
           allRoles={roles}
           selectedRoles={selectedRoles}
-          setSelectedRoles={() => setSelectedRoles}
+          setSelectedRoles={setSelectedRoles}
         />
         {/* ボタン */}
         <div className="flex space-x-2">

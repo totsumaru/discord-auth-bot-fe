@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(private)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/button/ReturnTopButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/sidebar/ChannelSelectSidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/ChannelSelectSidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +44,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.TypeScript",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "ts.external.directory.path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
