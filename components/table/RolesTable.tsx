@@ -1,6 +1,6 @@
 "use client"
 
-import {permissionNames, role} from "@/utils/backend_res";
+import {permissionInfo, role} from "@/utils/backend_res";
 import {useEffect, useState} from "react";
 import ServerRoleSelector from "@/components/selector/ServerRoleSelector";
 import TableToggle from "@/components/toggle/TableToggle";
@@ -12,6 +12,8 @@ type Props = {
   roles: role[]
 }
 
+// ロール表示のテーブルです
+// - テーブルの設定はこの中に記述します
 export default function RolesTable({roles}: Props) {
   const [descriptionDisplay, setDescriptionDisplay] = useState<boolean>(true)
   const [selectedRoles, setSelectedRoles] = useState<role[]>(roles)
@@ -84,7 +86,7 @@ export default function RolesTable({roles}: Props) {
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
 
-                  {permissionNames.map(({value, jp, description}) => (
+                  {permissionInfo.map(({value, jp, description}) => (
                     // 1つの権限(= 1row)
                     <tr key={value}>
                       <td

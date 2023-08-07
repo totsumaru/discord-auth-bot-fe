@@ -33,30 +33,32 @@ export default function Index({
     supabase.auth.getSession().then(({data: {session}}) => {
       const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/channel/list?server_id=${guildId}`
       axios.get(url, {
-        headers: {
-          "Authorization": `Bearer ${session?.access_token}`
-        }
+        headers: {"Authorization": `Bearer ${session?.access_token}`}
       }).then((res) => {
         setChannels(res.data.channels)
       }).catch((e) => {
-        console.log(e)
+        console.error(e)
       })
     })
   }, [store.loginUserId])
 
   useEffect(() => {
-    supabase.auth.getSession().then(({data: {session}}) => {
-      const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/channel?server_id=${guildId}&channel_id=${currentChannelId}`
-      axios.get(url, {
-        headers: {
-          "Authorization": `Bearer ${session?.access_token}`
-        }
-      }).then((res) => {
-        setRoles(res.data.roles)
-      }).catch((e) => {
-        console.log(e)
+    if (currentChannelId) {
+      supabase.auth.getSession().then(({data: {session}}) => {
+        const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/channel?server_id=${guildId}&channel_id=${currentChannelId}`
+        console.log(url)
+        axios.get(url, {
+          headers: {
+            "Authorization": `Bearer ${session?.access_token}`
+          }
+        }).then((res) => {
+          setRoles(res.data.roles)
+          console.log(res.data)
+        }).catch((e) => {
+          console.error(e)
+        })
       })
-    })
+    }
   }, [currentChannelId])
 
   return (
@@ -68,13 +70,16 @@ export default function Index({
         ) : (
           store.loginUserId ? (
             <DashboardContentLayout>
+              {/* タイトル */}
               <Heading
                 title={"チャンネルの権限"}
                 content={"サーバー全体の設定(デフォルト)から、上書きされたチャンネルの権限です。"}
               />
+              {/* サイドバー表示ボタン*/}
               <ChannelSelectButton onclickHandler={() => {
                 setSidebarOpen(true)
               }}/>
+              {/* サイドバー */}
               <ChannelSelectSidebar
                 open={sidebarOpen}
                 setOpen={setSidebarOpen}

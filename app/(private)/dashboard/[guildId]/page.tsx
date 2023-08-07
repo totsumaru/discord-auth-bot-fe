@@ -31,7 +31,7 @@ export default function Index({
       }).then((res) => {
         setRoles(res.data.roles)
       }).catch((e) => {
-        console.log(e)
+        console.error(e)
       })
     })
   }, [store.loginUserId])

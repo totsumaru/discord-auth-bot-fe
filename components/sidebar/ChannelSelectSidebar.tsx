@@ -21,7 +21,6 @@ export default function ChannelSelectSidebar({open, setOpen, channels, setCurren
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => {
-        console.log("hello")
         setOpen(false)
       }}>
         <div className="fixed inset-0"/>

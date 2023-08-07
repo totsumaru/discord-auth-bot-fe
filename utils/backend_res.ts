@@ -47,7 +47,7 @@
 //   administrator: boolean
 // }
 
-export const permissionNames: Array<{
+export const permissionInfo: Array<{
   value: string
   jp: string
   description: string
