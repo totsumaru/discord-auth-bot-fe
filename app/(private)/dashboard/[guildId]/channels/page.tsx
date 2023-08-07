@@ -4,7 +4,6 @@
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import useUserStore from "@/store/user";
 import React, {useEffect, useState} from "react";
-import {channel, role} from "@/utils/backend_res_type";
 import Spinner from "@/components/loading/Spinner";
 import NavigationBar from "@/components/nav/NavigationBar";
 import ReturnTopButton from "@/components/button/ReturnTopButton";
@@ -16,6 +15,7 @@ import RolesTable from "@/components/table/RolesTable";
 import TopClientLayout from "@/components/layout/TopClientLayout";
 import {GetChannelList} from "@/utils/api/channel/list/list";
 import {GetChannel} from "@/utils/api/channel/channel";
+import {channel, role} from "@/utils/backend_res_type";
 
 export default function Index({
   params: {guildId}
