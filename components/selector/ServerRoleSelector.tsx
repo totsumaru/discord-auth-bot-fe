@@ -2,10 +2,7 @@ import {Dispatch, Fragment, SetStateAction} from 'react'
 import {Listbox, Transition} from '@headlessui/react'
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
 import {role} from "@/utils/backend_res_type";
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
-}
+import {classNames} from "@/utils/class_names";
 
 type Props = {
   allRoles: role[]

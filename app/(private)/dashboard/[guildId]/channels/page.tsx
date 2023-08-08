@@ -93,7 +93,7 @@ export default function Index({
                 setCurrentChannelId={setCurrentChannelId}
               />
               {currentChannelId && (
-                <RolesTable roles={roles} tableType={currentChannel?.type!}/>
+                <RolesTable roles={roles} tableType={currentChannel?.type!} channelName={currentChannel?.name}/>
               )}
             </DashboardContentLayout>
           ) : (

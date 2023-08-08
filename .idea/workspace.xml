@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/components/section/Heading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/section/Heading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/dashboard/[guildId]/channels/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/selector/ServerRoleSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/selector/ServerRoleSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sidebar/ChannelSelectSidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/ChannelSelectSidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/RolesTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/RolesTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/toggle/TableToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/toggle/TableToggle.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

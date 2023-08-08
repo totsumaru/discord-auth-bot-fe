@@ -27,15 +27,18 @@ import {
 } from "@/components/table/table_roles";
 import {numberToHexColor} from "@/utils/hex_color";
 import {roleInfo} from "@/utils/role_info";
+import ChannelTypeIcon from "@/components/icon/ChannelTypeIcon";
+import {classNames} from "@/utils/class_names";
 
 type Props = {
   tableType: ChannelType | "server"
   roles: role[]
+  channelName?: string
 }
 
 // ロール表示のテーブルです
 // - テーブルの設定はこの中に記述します
-export default function RolesTable({roles, tableType}: Props) {
+export default function RolesTable({roles, tableType, channelName}: Props) {
   const [descriptionOpen, setDescriptionOpen] = useState<boolean>(true) // ロールの説明を表示する状態です
   const [selectedRoles, setSelectedRoles] = useState<role[]>(roles) // 表示させているロールです
 
@@ -96,6 +99,18 @@ export default function RolesTable({roles, tableType}: Props) {
       <div className="mt-4 ml-2 sm:ml-0 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
+            {/* チャンネルの設定時のみ、チャンネル名を表示 */}
+            {tableType !== "server" && (
+              <div className={classNames("border-b-2", "flex py-2 items-center")}>
+                <ChannelTypeIcon
+                  channelType={tableType as ChannelType}
+                />
+                <h3
+                  className="ml-1 text-base font-semibold">
+                  {channelName}
+                </h3>
+              </div>
+            )}
             <p className="ml-1 mt-2 text-sm text-gray-700">
               ※権限の変更はできません
             </p>

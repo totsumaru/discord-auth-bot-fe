@@ -1,22 +1,9 @@
 import {Dispatch, Fragment, ReactNode, SetStateAction} from 'react'
 import {Dialog, Transition} from '@headlessui/react'
-import {
-  ChatBubbleLeftRightIcon,
-  FolderIcon,
-  HashtagIcon,
-  MicrophoneIcon,
-  SpeakerWaveIcon,
-  XMarkIcon
-} from '@heroicons/react/24/outline'
-import {
-  channel,
-  ChannelTypeAnnounce,
-  ChannelTypeCategory,
-  ChannelTypeForum,
-  ChannelTypeStage,
-  ChannelTypeText,
-  ChannelTypeVC
-} from "@/utils/backend_res_type";
+import {XMarkIcon} from '@heroicons/react/24/outline'
+import {channel} from "@/utils/backend_res_type";
+import ChannelTypeIcon from "@/components/icon/ChannelTypeIcon";
+import {classNames} from "@/utils/class_names";
 
 type Props = {
   open: boolean
@@ -77,29 +64,6 @@ function ChannelListContent({
       {channels.length === 0
         ? "表示できるチャンネルがありません"
         : channels.map((channel) => {
-          let icon: ReactNode
-
-          switch (channel.type) {
-            case ChannelTypeText:
-              icon = <HashtagIcon className="h-4 w-4"/>
-              break
-            case ChannelTypeAnnounce:
-              icon = <HashtagIcon className="h-4 w-4"/>
-              break
-            case ChannelTypeForum:
-              icon = <ChatBubbleLeftRightIcon className="h-4 w-4"/>
-              break
-            case ChannelTypeCategory:
-              icon = <FolderIcon className="h-3 w-3"/>
-              break
-            case ChannelTypeVC:
-              icon = <SpeakerWaveIcon className="h-4 w-4"/>
-              break
-            case ChannelTypeStage:
-              icon = <MicrophoneIcon className="h-4 w-4"/>
-              break
-          }
-
           return (
             <li key={channel.id} className={classNames(
               "list-none", channel.type !== "category" ? "ml-5" : ""
@@ -110,7 +74,7 @@ function ChannelListContent({
                 )}
                 onClick={() => setCurrentChannelId(channel.id)}
               >
-                {icon}
+                <ChannelTypeIcon channelType={channel.type}/>
                 {channel.name}
               </button>
             </li>
@@ -151,8 +115,4 @@ function CloseButton({onclickHandler}: { onclickHandler: () => void }) {
       </button>
     </div>
   )
-}
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
 }

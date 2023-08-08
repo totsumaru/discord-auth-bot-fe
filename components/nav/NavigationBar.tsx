@@ -5,10 +5,7 @@ import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import LoginButton from "@/components/button/LoginButton";
 import Link from "next/link";
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
-}
+import {classNames} from "@/utils/class_names";
 
 const tabClassFocus = "inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
 const tabClassNotFocus = "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
