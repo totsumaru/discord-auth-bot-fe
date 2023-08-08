@@ -106,7 +106,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
                   channelType={tableType as ChannelType}
                 />
                 <h3
-                  className="ml-1 text-base font-semibold">
+                  className="ml-1 text-xl font-semibold">
                   {channelName}
                 </h3>
               </div>

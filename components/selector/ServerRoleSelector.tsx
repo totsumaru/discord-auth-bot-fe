@@ -13,11 +13,11 @@ type Props = {
 // 表示するロールのセレクターです
 export default function ServerRoleSelector({allRoles, selectedRoles, setSelectedRoles}: Props) {
   return (
-    <div className="my-4 mb-2 max-w-[500px]">
+    <div className="mb-2 max-w-[500px]">
       <Listbox value={selectedRoles} onChange={setSelectedRoles} multiple>
         {({open}) => (
           <>
-            <div className="relative mt-2">
+            <div className="relative">
               <Listbox.Button
                 className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <span className="block truncate">
