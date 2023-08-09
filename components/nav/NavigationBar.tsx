@@ -9,6 +9,7 @@ import {GetUserInfo} from "@/utils/api/info/user/user";
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {classNames} from "@/utils/class_names";
 import useUserStore from "@/store/user";
+import {GetServerInfo} from "@/utils/api/info/server/server";
 
 const tabClassFocus = "inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
 const tabClassNotFocus = "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
@@ -24,7 +25,11 @@ export default function NavigationBar({guildId, isServer}: Props) {
   const [loading, setLoading] = useState<boolean>(true)
 
   const [iconUrl, setIconUrl] = useState<string>()
-  const [payUserId, setPayUserId] = useState<string>()
+  const [payUser, setPayUser] = useState<{
+    id: string
+    name: string
+    icon_url: string
+  }>()
 
   const signOut = async () => {
     const {error} = await supabase.auth.signOut()
@@ -47,7 +52,20 @@ export default function NavigationBar({guildId, isServer}: Props) {
             console.error(e)
             setLoading(false)
           })
+
         // サーバーの情報を取得します
+        guildId && GetServerInfo({
+          accessToken: session.access_token,
+          guildId: guildId,
+        })
+          .then((res) => {
+            setPayUser(res.subscriber)
+            setLoading(false)
+          })
+          .catch(e => {
+            setLoading(false)
+            console.error(e)
+          })
       }
     })
   }, [])

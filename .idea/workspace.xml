@@ -41,7 +41,7 @@
     "go.sdk.automatically.set": "true",
     "javascript.nodejs.core.library.configured.version": "18.12.0",
     "javascript.nodejs.core.library.typings.version": "18.17.1",
-    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/store",
+    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/utils/api/info",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -52,11 +52,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/api/info" />
       <recent name="$PROJECT_DIR$/store" />
       <recent name="$PROJECT_DIR$/utils/api/channel" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/dashboard" />
-      <recent name="$PROJECT_DIR$/components/button" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/utils/api/channel/list" />
