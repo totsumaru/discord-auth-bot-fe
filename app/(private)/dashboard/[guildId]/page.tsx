@@ -44,7 +44,7 @@ export default function Index({
   return (
     <TopClientLayout>
       <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
-        <NavigationBar tabVisible={true} guildId={guildId} isServer={true}/>
+        <NavigationBar guildId={guildId} isServer={true}/>
         {store.loginLoading ? (
           <Spinner/>
         ) : (

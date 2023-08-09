@@ -37,7 +37,7 @@ export default function Index() {
   return (
     <TopClientLayout>
       <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
-        <NavigationBar tabVisible={false}/>
+        <NavigationBar/>
         <div className="py-24 sm:py-12">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {store.loginLoading ? (
