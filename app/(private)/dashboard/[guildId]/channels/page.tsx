@@ -68,7 +68,7 @@ export default function Index({
   return (
     <TopClientLayout>
       <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
-        <NavigationBar guildId={guildId} isServer={false}/>
+        <NavigationBar guildId={guildId} focusTab="channel"/>
         {store.loginLoading ? (
           <Spinner/>
         ) : (

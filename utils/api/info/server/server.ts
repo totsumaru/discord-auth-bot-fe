@@ -7,6 +7,8 @@ import axios from "axios";
 // バックエンドからのレスポンスです
 type ApiInfoServerRes = {
   server_id: string
+  server_name: string
+  server_icon_url: string
   subscriber: {
     id: string
     name: string

@@ -2,15 +2,13 @@
 
 import NavigationBar from "@/components/nav/NavigationBar";
 import React, {useEffect, useState} from "react";
+import TopClientLayout from "@/components/layout/TopClientLayout";
 import useUserStore from "@/store/user";
-import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
-import RolesTable from "@/components/table/RolesTable";
 import Spinner from "@/components/loading/Spinner";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import Heading from "@/components/section/Heading";
-import TopClientLayout from "@/components/layout/TopClientLayout";
-import {GetAllRoles} from "@/utils/api/server/server";
-import {role} from "@/utils/backend_res_type";
+import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+import {GetServerInfo} from "@/utils/api/info/server/server";
 import LoginSection from "@/components/section/LoginSection";
 
 export default function Index({
@@ -18,44 +16,48 @@ export default function Index({
 }: {
   params: { guildId: string }
 }) {
-  const supabase = createClientComponentClient()
   const store = useUserStore()
-  const [roles, setRoles] = useState<role[]>([])
+  const supabase = createClientComponentClient()
+
   const [guildName, setGuildName] = useState<string>("")
   const [guildIconUrl, setGuildIconUrl] = useState<string>("")
+  const [subscriber, setSubscriber] = useState<{
+    id: string
+    name: string
+    icon_url: string
+  }>()
+  const [operatorRoleIds, setOperatorRoleIds] = useState<string[]>([])
 
   useEffect(() => {
-    // backendからサーバー全体のロールの権限を取得します
     supabase.auth.getSession().then(({data: {session}}) => {
       if (session) {
-        GetAllRoles({accessToken: session.access_token, guildId: guildId})
-          .then((res) => {
-            // 全ロールを保存します
-            setRoles(res.roles)
+        GetServerInfo({accessToken: session.access_token, guildId: guildId})
+          .then(res => {
             setGuildName(res.server_name)
             setGuildIconUrl(res.server_icon_url)
+            setSubscriber(res.subscriber)
+            setOperatorRoleIds(res.operator_role_id)
           })
           .catch(e => console.error(e))
       }
     })
-  }, [store.loginUserId])
+  }, [])
 
   return (
     <TopClientLayout>
       <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
-        <NavigationBar guildId={guildId} focusTab="server"/>
+        <NavigationBar guildId={guildId} focusTab="config"/>
         {store.loginLoading ? (
           <Spinner/>
         ) : (
           store.loginUserId ? (
             <DashboardContentLayout>
               <Heading
-                title={"サーバー全体の権限"}
-                content={"各ロールのデフォルトの権限です。"}
+                title="設定"
+                content="このbot(アプリケーション)の設定を行います。"
                 serverName={guildName}
                 serverIconUrl={guildIconUrl}
               />
-              <RolesTable roles={roles} tableType={"server"}/>
             </DashboardContentLayout>
           ) : (
             <LoginSection/>

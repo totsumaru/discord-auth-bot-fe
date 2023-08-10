@@ -3,7 +3,7 @@
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import LoginButton from "@/components/button/LoginButton";
 import Link from "next/link";
-import {Fragment, useEffect, useRef, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {GetUserInfo} from "@/utils/api/info/user/user";
 import {Disclosure, Menu, Transition} from '@headlessui/react'
@@ -17,10 +17,10 @@ const tabClassNotFocus = "inline-flex items-center border-b-2 border-transparent
 
 type Props = {
   guildId?: string
-  isServer?: boolean
+  focusTab: "server" | "channel" | "config"
 }
 
-export default function NavigationBar({guildId, isServer}: Props) {
+export default function NavigationBar({guildId, focusTab}: Props) {
   const supabase = createClientComponentClient()
   const userStore = useUserStore()
   const [loading, setLoading] = useState<boolean>(true)
@@ -32,8 +32,6 @@ export default function NavigationBar({guildId, isServer}: Props) {
     icon_url: string
   }>()
   const [open, setOpen] = useState(false)
-
-  const cancelButtonRef = useRef(null)
 
   const signOut = async () => {
     const {error} = await supabase.auth.signOut()
@@ -66,7 +64,7 @@ export default function NavigationBar({guildId, isServer}: Props) {
             setPayUser(res.subscriber)
             setLoading(false)
           })
-          .catch(e => {
+          .catch((e) => {
             setLoading(false)
             console.error(e)
           })
@@ -115,15 +113,21 @@ export default function NavigationBar({guildId, isServer}: Props) {
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                           <Link
                             href={`/dashboard/${guildId}`}
-                            className={isServer ? tabClassFocus : tabClassNotFocus}
+                            className={focusTab === "server" ? tabClassFocus : tabClassNotFocus}
                           >
-                            サーバー全体の設定
+                            サーバー全体の権限
                           </Link>
                           <Link
                             href={`/dashboard/${guildId}/channels`}
-                            className={isServer ? tabClassNotFocus : tabClassFocus}
+                            className={focusTab === "channel" ? tabClassFocus : tabClassNotFocus}
                           >
-                            各チャンネルの設定
+                            各チャンネルの権限
+                          </Link>
+                          <Link
+                            href={`/config/${guildId}`}
+                            className={focusTab === "config" ? tabClassFocus : tabClassNotFocus}
+                          >
+                            設定
                           </Link>
                         </div>
                       </>
@@ -165,19 +169,19 @@ export default function NavigationBar({guildId, isServer}: Props) {
                             >
                               <Menu.Items
                                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                {/* 現在のプラン（サーバーの一覧選択時は表示されない） */}
-                                {guildId && (
-                                  <Menu.Item>
-                                    {({active}) => (
-                                      <button
-                                        className={classNames(active ? 'bg-gray-100' : '', 'w-full text-left block px-4 py-2 text-sm text-gray-700')}
-                                        onClick={() => setOpen(true)}
-                                      >
-                                        現在のプラン
-                                      </button>
-                                    )}
-                                  </Menu.Item>
-                                )}
+                                {/*/!* 現在のプラン（サーバーの一覧選択時は表示されない） *!/*/}
+                                {/*{guildId && (*/}
+                                {/*  <Menu.Item>*/}
+                                {/*    {({active}) => (*/}
+                                {/*      <button*/}
+                                {/*        className={classNames(active ? 'bg-gray-100' : '', 'w-full text-left block px-4 py-2 text-sm text-gray-700')}*/}
+                                {/*        onClick={() => setOpen(true)}*/}
+                                {/*      >*/}
+                                {/*        現在のプラン*/}
+                                {/*      </button>*/}
+                                {/*    )}*/}
+                                {/*  </Menu.Item>*/}
+                                {/*)}*/}
                                 {/* ログアウトメニュー */}
                                 <Menu.Item>
                                   {({active}) => (
