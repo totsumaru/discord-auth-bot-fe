@@ -11,7 +11,7 @@ import {
   role
 } from "@/utils/backend_res_type";
 import {useEffect, useState} from "react";
-import ServerRoleSelector from "@/components/selector/ServerRoleSelector";
+import RoleSelector from "@/components/selector/RoleSelector";
 import TableToggle from "@/components/toggle/TableToggle";
 import DashboardSettingLayout from "@/components/layout/DashboardSettingLayout";
 import SetSelectedRolesButton from "@/components/button/SetSelectedRolesButton";
@@ -69,7 +69,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
     <>
       <DashboardSettingLayout>
         {/* ロール選択のセレクター */}
-        <ServerRoleSelector
+        <RoleSelector
           allRoles={roles}
           selectedRoles={selectedRoles}
           setSelectedRoles={setSelectedRoles}

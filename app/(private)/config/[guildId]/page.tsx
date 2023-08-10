@@ -10,6 +10,9 @@ import Heading from "@/components/section/Heading";
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {GetServerInfo} from "@/utils/api/info/server/server";
 import LoginSection from "@/components/section/LoginSection";
+import OperatorRoleConfig from "@/components/section/OperatorRoleConfig";
+import {guild, role, user} from "@/utils/backend_res_type";
+import {GetAllRoles} from "@/utils/api/server/server";
 
 export default function Index({
   params: {guildId}
@@ -19,24 +22,34 @@ export default function Index({
   const store = useUserStore()
   const supabase = createClientComponentClient()
 
-  const [guildName, setGuildName] = useState<string>("")
-  const [guildIconUrl, setGuildIconUrl] = useState<string>("")
-  const [subscriber, setSubscriber] = useState<{
-    id: string
-    name: string
-    icon_url: string
-  }>()
-  const [operatorRoleIds, setOperatorRoleIds] = useState<string[]>([])
+  const [guildInfo, setGuild] = useState<guild>()
+  const [subscriber, setSubscriber] = useState<user>()
+  const [operatorRoles, setOperatorRoles] = useState<role[]>([])
+  const [allRoles, setAllRoles] = useState<role[]>([])
+
+  useEffect(() => {
+    // backendからサーバー全体のロールの権限を取得します
+    supabase.auth.getSession().then(({data: {session}}) => {
+      if (session) {
+        GetAllRoles({accessToken: session.access_token, guildId: guildId})
+          .then((res) => {
+            // 全ロールを保存します
+            setAllRoles(res.roles)
+            setGuild(res.server)
+          })
+          .catch(e => console.error(e))
+      }
+    })
+  }, [store.loginUserId])
 
   useEffect(() => {
     supabase.auth.getSession().then(({data: {session}}) => {
       if (session) {
         GetServerInfo({accessToken: session.access_token, guildId: guildId})
           .then(res => {
-            setGuildName(res.server_name)
-            setGuildIconUrl(res.server_icon_url)
+            console.log("res: ", res.operator_role)
             setSubscriber(res.subscriber)
-            setOperatorRoleIds(res.operator_role_id)
+            setOperatorRoles(res.operator_role)
           })
           .catch(e => console.error(e))
       }
@@ -55,8 +68,13 @@ export default function Index({
               <Heading
                 title="設定"
                 content="このbot(アプリケーション)の設定を行います。"
-                serverName={guildName}
-                serverIconUrl={guildIconUrl}
+                serverName={guildInfo?.name || ""}
+                serverIconUrl={guildInfo?.icon_url || ""}
+              />
+              <OperatorRoleConfig
+                allRoles={allRoles}
+                selectedRoles={operatorRoles}
+                setSelectedRoles={setOperatorRoles}
               />
             </DashboardContentLayout>
           ) : (

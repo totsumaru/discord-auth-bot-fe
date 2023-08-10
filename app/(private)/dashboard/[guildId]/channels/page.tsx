@@ -14,7 +14,7 @@ import RolesTable from "@/components/table/RolesTable";
 import TopClientLayout from "@/components/layout/TopClientLayout";
 import {GetChannelList} from "@/utils/api/channel/list/list";
 import {GetChannel} from "@/utils/api/channel/channel";
-import {channel, role} from "@/utils/backend_res_type";
+import {channel, guild, role} from "@/utils/backend_res_type";
 import LoginSection from "@/components/section/LoginSection";
 
 export default function Index({
@@ -25,11 +25,9 @@ export default function Index({
   const supabase = createClientComponentClient()
   const store = useUserStore()
   const [allChannels, setAllChannels] = useState<channel[]>([])
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [currentChannelId, setCurrentChannelId] = useState<string>("")
-  const [guildName, setGuildName] = useState<string>("")
-  const [guildIconUrl, setGuildIconUrl] = useState<string>("")
-
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
+  const [guildInfo, setGuild] = useState<guild>()
   const [currentChannel, setCurrentChannel] = useState<channel>()
   const [roles, setRoles] = useState<role[]>([])
 
@@ -40,8 +38,7 @@ export default function Index({
         GetChannelList({accessToken: session.access_token, guildId: guildId})
           .then(res => {
             setAllChannels(res.channels)
-            setGuildName(res.server_name)
-            setGuildIconUrl(res.server_icon_url)
+            setGuild(res.server)
           }).catch(e => {
           console.error(e)
         })
@@ -78,8 +75,8 @@ export default function Index({
               <Heading
                 title={"チャンネルの権限"}
                 content={"サーバー全体の設定(デフォルト)から、上書きされたチャンネルの権限です。"}
-                serverName={guildName}
-                serverIconUrl={guildIconUrl}
+                serverName={guildInfo?.name || ""}
+                serverIconUrl={guildInfo?.icon_url || ""}
               />
               {/* サイドバー表示ボタン*/}
               <ChannelSelectButton onclickHandler={() => {

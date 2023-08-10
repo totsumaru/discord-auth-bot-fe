@@ -1,4 +1,4 @@
-import {channel, role} from "@/utils/backend_res_type";
+import {channel, roleWithPermission} from "@/utils/backend_res_type";
 import axios from "axios";
 
 // ============================================
@@ -9,7 +9,7 @@ import axios from "axios";
 type ApiChannelRes = {
   channel: channel
   is_private: boolean
-  roles: role[]
+  roles: roleWithPermission[]
 }
 
 // リクエストです

@@ -11,7 +11,7 @@ type Props = {
 }
 
 // 表示するロールのセレクターです
-export default function ServerRoleSelector({allRoles, selectedRoles, setSelectedRoles}: Props) {
+export default function RoleSelector({allRoles, selectedRoles, setSelectedRoles}: Props) {
   return (
     <div className="mb-2 max-w-[500px]">
       <Listbox value={selectedRoles} onChange={setSelectedRoles} multiple>
@@ -22,8 +22,8 @@ export default function ServerRoleSelector({allRoles, selectedRoles, setSelected
                 className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <span className="block truncate">
                   {allRoles.length === selectedRoles.length
-                    ? `全てのロール（${selectedRoles.length}個）を表示`
-                    : `${selectedRoles.length}個のロールを表示`
+                    ? `全てのロール（${selectedRoles.length}個）が選択されています`
+                    : `${selectedRoles.length}個のロールが選択されています`
                   }
                 </span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

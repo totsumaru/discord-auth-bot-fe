@@ -1,4 +1,5 @@
 import axios from "axios";
+import {guild, role, user} from "@/utils/backend_res_type";
 
 // ============================================
 // `/api/info/server`のリクエストです
@@ -6,19 +7,13 @@ import axios from "axios";
 
 // バックエンドからのレスポンスです
 type ApiInfoServerRes = {
-  server_id: string
-  server_name: string
-  server_icon_url: string
-  subscriber: {
-    id: string
-    name: string
-    icon_url: string
-  },
-  operator_role_id: string[]
+  server: guild
+  subscriber: user
+  operator_role: role[]
 }
 
 // リクエストです
-type ApiServerReq = {
+type ApiInfoServerReq = {
   accessToken: string
   guildId: string
 }
@@ -27,7 +22,7 @@ type ApiServerReq = {
 export const GetServerInfo = async ({
   accessToken,
   guildId,
-}: ApiServerReq): Promise<ApiInfoServerRes> => {
+}: ApiInfoServerReq): Promise<ApiInfoServerRes> => {
   const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/info/server?server_id=${guildId}`
   try {
     const res = await axios.get<ApiInfoServerRes>(url, {

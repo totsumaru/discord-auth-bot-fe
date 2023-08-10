@@ -14,15 +14,19 @@ export type ChannelType =
   | typeof ChannelTypeVC
   | typeof ChannelTypeStage
 
+// Permissionを含むロールのレスポンスです
+export type roleWithPermission = role & {
+  permission: {
+    [key: string]: boolean
+  }
+}
+
 // ロールのレスポンスです
 export type role = {
   id: string
   name: string
   color: number
   comment?: string
-  permission: {
-    [key: string]: boolean
-  }
 }
 
 // チャンネルのレスポンスです
@@ -34,6 +38,13 @@ export type channel = {
 
 // ギルドのレスポンスです
 export type guild = {
+  id: string
+  name: string
+  icon_url: string
+}
+
+// ユーザーのレスポンスです
+export type user = {
   id: string
   name: string
   icon_url: string

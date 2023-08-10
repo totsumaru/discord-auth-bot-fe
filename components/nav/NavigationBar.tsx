@@ -47,7 +47,7 @@ export default function NavigationBar({guildId, focusTab}: Props) {
         // ユーザー情報を取得します（アイコンURL）
         GetUserInfo({accessToken: session.access_token})
           .then((res) => {
-            setIconUrl(res.icon_url)
+            setIconUrl(res.user.icon_url)
             setLoading(false)
           })
           .catch(e => {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import {user} from "@/utils/backend_res_type";
 
 // ============================================
 // `/api/info/user`のリクエストです
@@ -6,8 +7,7 @@ import axios from "axios";
 
 // バックエンドからのレスポンスです
 type ApiInfoUserRes = {
-  discord_id: string
-  icon_url: string
+  user: user
 }
 
 // リクエストです

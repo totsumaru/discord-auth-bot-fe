@@ -1,4 +1,4 @@
-import {channel} from "@/utils/backend_res_type";
+import {channel, guild} from "@/utils/backend_res_type";
 import axios from "axios";
 
 // ============================================
@@ -7,8 +7,7 @@ import axios from "axios";
 
 // バックエンドからのレスポンスです
 type ApiChannelListRes = {
-  server_name: string
-  server_icon_url: string
+  server: guild
   channels: channel[]
 }
 

@@ -10,7 +10,7 @@ import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import Heading from "@/components/section/Heading";
 import TopClientLayout from "@/components/layout/TopClientLayout";
 import {GetAllRoles} from "@/utils/api/server/server";
-import {role} from "@/utils/backend_res_type";
+import {guild, role} from "@/utils/backend_res_type";
 import LoginSection from "@/components/section/LoginSection";
 
 export default function Index({
@@ -21,8 +21,7 @@ export default function Index({
   const supabase = createClientComponentClient()
   const store = useUserStore()
   const [roles, setRoles] = useState<role[]>([])
-  const [guildName, setGuildName] = useState<string>("")
-  const [guildIconUrl, setGuildIconUrl] = useState<string>("")
+  const [guildInfo, setGuild] = useState<guild>()
 
   useEffect(() => {
     // backendからサーバー全体のロールの権限を取得します
@@ -32,8 +31,7 @@ export default function Index({
           .then((res) => {
             // 全ロールを保存します
             setRoles(res.roles)
-            setGuildName(res.server_name)
-            setGuildIconUrl(res.server_icon_url)
+            setGuild(res.server)
           })
           .catch(e => console.error(e))
       }
@@ -52,8 +50,8 @@ export default function Index({
               <Heading
                 title={"サーバー全体の権限"}
                 content={"各ロールのデフォルトの権限です。"}
-                serverName={guildName}
-                serverIconUrl={guildIconUrl}
+                serverName={guildInfo?.name ?? ""}
+                serverIconUrl={guildInfo?.icon_url ?? ""}
               />
               <RolesTable roles={roles} tableType={"server"}/>
             </DashboardContentLayout>
