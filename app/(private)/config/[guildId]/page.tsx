@@ -8,7 +8,7 @@ import Spinner from "@/components/loading/Spinner";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import Heading from "@/components/section/Heading";
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
-import {GetServerInfo} from "@/utils/api/info/server/server";
+import {GetServerInfo, UpdateOperatorRoles} from "@/utils/api/info/server/server";
 import LoginSection from "@/components/section/LoginSection";
 import OperatorRoleConfig from "@/components/section/OperatorRoleConfig";
 import {guild, role, user} from "@/utils/backend_res_type";
@@ -47,7 +47,6 @@ export default function Index({
       if (session) {
         GetServerInfo({accessToken: session.access_token, guildId: guildId})
           .then(res => {
-            console.log("res: ", res.operator_role)
             setSubscriber(res.subscriber)
             setOperatorRoles(res.operator_role)
           })
@@ -55,6 +54,22 @@ export default function Index({
       }
     })
   }, [])
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({data: {session}}) => {
+      if (session) {
+        try {
+          UpdateOperatorRoles({
+            accessToken: session.access_token,
+            guildId: guildId,
+            operatorRoleIds: operatorRoles.map(obj => obj.id)
+          }).then()
+        } catch (e) {
+          console.error(e)
+        }
+      }
+    })
+  }, [operatorRoles])
 
   return (
     <TopClientLayout>

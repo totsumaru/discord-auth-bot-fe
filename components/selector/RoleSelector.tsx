@@ -8,13 +8,23 @@ type Props = {
   allRoles: role[]
   selectedRoles: role[]
   setSelectedRoles: Dispatch<SetStateAction<role[]>>;
+  maxAmount?: number
 }
 
 // 表示するロールのセレクターです
-export default function RoleSelector({allRoles, selectedRoles, setSelectedRoles}: Props) {
+export default function RoleSelector({allRoles, selectedRoles, setSelectedRoles, maxAmount}: Props) {
+  const handleRoleChange = (selected: role[]) => {
+    if (maxAmount) {
+      // すでに選択されたロールの数が maxAmount に達している場合、新しいロールを追加しない
+      if (selected.length > maxAmount) return;
+    }
+
+    setSelectedRoles(selected);
+  }
+
   return (
     <div className="mb-2 max-w-[500px]">
-      <Listbox value={selectedRoles} onChange={setSelectedRoles} multiple>
+      <Listbox value={selectedRoles} onChange={handleRoleChange} multiple>
         {({open}) => (
           <>
             <div className="relative">
