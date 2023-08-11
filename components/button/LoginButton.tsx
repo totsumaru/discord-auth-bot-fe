@@ -13,7 +13,7 @@ export default function LoginButton() {
       provider: 'discord',
       options: {
         scopes: "guilds",
-        // redirectTo: `${process.env.NEXT_PUBLIC_FE_URL}/dashboard`
+        redirectTo: `${process.env.NEXT_PUBLIC_FE_URL}/dashboard`
       }
     })
     if (error) {

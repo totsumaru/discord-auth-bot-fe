@@ -32,7 +32,7 @@ export default function NavigationBody({
     if (error) {
       console.error("ログアウトに失敗しました")
     }
-    router.push("/")
+    router.push("/login")
   }
 
   return (
