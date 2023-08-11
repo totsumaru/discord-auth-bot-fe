@@ -2,7 +2,7 @@ import {create} from 'zustand'
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 
 type userState = {
-  loginUserId: string
+  loginUserId: string // supabaseのUser UID（discordのIDとは異なります）
   loginLoading: boolean // チラつき防止のため、loadingの状態を保持しています
 }
 

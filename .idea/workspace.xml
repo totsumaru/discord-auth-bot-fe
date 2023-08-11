@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(private)/config/[guildId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/config/[guildId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/button/ChannelSelectButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/button/ChannelSelectButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/selector/ServerRoleSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/selector/RoleSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/table/RolesTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/RolesTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/user.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +36,7 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "add-config-contents",
+    "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "javascript.nodejs.core.library.configured.version": "18.12.0",

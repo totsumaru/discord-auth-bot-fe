@@ -13,6 +13,8 @@ import LoginSection from "@/components/section/LoginSection";
 import OperatorRoleConfig from "@/components/section/OperatorRoleConfig";
 import {guild, role, user} from "@/utils/backend_res_type";
 import {GetAllRoles} from "@/utils/api/server/server";
+import Payment from "@/components/section/Payment";
+import {Session} from "@supabase/supabase-js";
 
 export default function Index({
   params: {guildId}
@@ -25,12 +27,14 @@ export default function Index({
   const [guildInfo, setGuild] = useState<guild>()
   const [subscriber, setSubscriber] = useState<user>()
   const [operatorRoles, setOperatorRoles] = useState<role[]>([])
-  const [allRoles, setAllRoles] = useState<role[]>([])
+  const [allRoles, setAllRoles] = useState<role[]>([]) // 不要
+  const [session, setSession] = useState<Session>() // 不要
 
   useEffect(() => {
     // backendからサーバー全体のロールの権限を取得します
     supabase.auth.getSession().then(({data: {session}}) => {
       if (session) {
+        setSession(session)
         GetAllRoles({accessToken: session.access_token, guildId: guildId})
           .then((res) => {
             // 全ロールを保存します
@@ -91,6 +95,7 @@ export default function Index({
                 selectedRoles={operatorRoles}
                 setSelectedRoles={setOperatorRoles}
               />
+              <Payment subscriber={subscriber}/>
             </DashboardContentLayout>
           ) : (
             <LoginSection/>
