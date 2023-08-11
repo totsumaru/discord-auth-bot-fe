@@ -86,7 +86,7 @@ export default function NavigationBody({
                           各チャンネルの権限
                         </Link>
                         <Link
-                          href={`/config/${guildId}`}
+                          href={`/dashboard/${guildId}/config`}
                           className={focusTab === "config" ? tabClassFocus : tabClassNotFocus}
                         >
                           設定
