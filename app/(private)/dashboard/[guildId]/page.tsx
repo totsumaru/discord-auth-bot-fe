@@ -1,5 +1,4 @@
 import NavigationBar from "@/components/nav/NavigationBar";
-import React from "react";
 import RolesTable from "@/components/table/RolesTable";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import Heading from "@/components/section/Heading";
