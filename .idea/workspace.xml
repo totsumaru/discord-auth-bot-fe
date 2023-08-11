@@ -7,12 +7,7 @@
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(private)/config/[guildId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(private)/config/[guildId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout/DashboardContentLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/DashboardContentLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/section/OperatorRoleConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/section/OperatorRoleConfig.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/section/Payment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/section/Payment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/info/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/info/server/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/api/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/api/server/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,27 +30,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "to-server",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "javascript.nodejs.core.library.configured.version": "18.12.0",
-    "javascript.nodejs.core.library.typings.version": "18.17.1",
-    "last_opened_file_path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/components/selector",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "ts.external.directory.path": "/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;to-server&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.17.1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/components/selector&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/totsuka/github.com/techstart35/discord-auth-bot-fe/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/components/selector" />
@@ -65,11 +60,11 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/nav" />
       <recent name="$PROJECT_DIR$/utils/api/channel/list" />
       <recent name="$PROJECT_DIR$/utils/api/server" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/utils/api" />
-      <recent name="$PROJECT_DIR$/components/table" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

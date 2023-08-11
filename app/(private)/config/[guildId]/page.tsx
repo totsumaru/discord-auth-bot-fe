@@ -22,7 +22,11 @@ export default async function Index({
 
   return (
     <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
-      <NavigationBar guildId={guildId} focusTab="config"/>
+      <NavigationBar
+        guildId={guildId}
+        focusTab="config"
+        accessToken={session?.access_token || ""}
+      />
       <DashboardContentLayout>
         <Heading
           title="設定"
