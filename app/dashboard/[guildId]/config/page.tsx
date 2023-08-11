@@ -14,9 +14,10 @@ export default async function Index({
 }) {
   const supabase = createServerComponentClient({cookies})
   const {data: {session}} = await supabase.auth.getSession()
+  const accessToken = session?.access_token || ""
 
   const {roles, server, subscriber, operator_role} = await GetAllRoles({
-    accessToken: session?.access_token || "",
+    accessToken: accessToken,
     guildId: guildId,
   })
 
@@ -37,6 +38,8 @@ export default async function Index({
         <OperatorRoleConfig
           allRoles={roles}
           operatorRoles={operator_role}
+          accessToken={accessToken}
+          guildId={guildId}
         />
         <Payment subscriber={subscriber}/>
       </DashboardContentLayout>

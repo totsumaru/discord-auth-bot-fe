@@ -9,11 +9,12 @@ type Props = {
   selectedRoles: role[]
   setSelectedRoles: Dispatch<SetStateAction<role[]>>;
   maxAmount?: number
+  onChangeFunc?: () => void
 }
 
 // 表示するロールのセレクターです
 export default function RoleSelector({
-  allRoles, selectedRoles, setSelectedRoles, maxAmount
+  allRoles, selectedRoles, setSelectedRoles, maxAmount, onChangeFunc
 }: Props) {
   const handleRoleChange = (selected: role[]) => {
     if (maxAmount) {
@@ -22,6 +23,10 @@ export default function RoleSelector({
     }
 
     setSelectedRoles(selected);
+
+    if (onChangeFunc) {
+      onChangeFunc()
+    }
   }
 
   return (
@@ -52,22 +57,22 @@ export default function RoleSelector({
               >
                 <Listbox.Options
                   className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                  {allRoles.map((person) => (
+                  {allRoles.map((listRole) => (
                     <Listbox.Option
-                      key={person.id}
+                      key={listRole.id}
                       className={({active}) =>
                         classNames(
                           active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                           'relative cursor-default select-none py-2 pl-8 pr-4'
                         )
                       }
-                      value={person}
+                      value={listRole}
                     >
                       {({selected, active}) => (
                         <>
-                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                          {person.name}
-                        </span>
+                          <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                            {listRole.name}
+                          </span>
 
                           {selected ? (
                             <span
