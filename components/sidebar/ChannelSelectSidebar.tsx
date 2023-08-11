@@ -4,23 +4,25 @@ import {XMarkIcon} from '@heroicons/react/24/outline'
 import {channel} from "@/utils/backend_res_type";
 import ChannelTypeIcon from "@/components/icon/ChannelTypeIcon";
 import {classNames} from "@/utils/class_names";
+import Link from "next/link";
 
 type Props = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>;
   channels: channel[]
-  setCurrentChannelId: Dispatch<SetStateAction<string>>;
+  guildId: string
 }
 
 // チャンネル一覧を表示するサイドバーです
-export default function ChannelSelectSidebar({open, setOpen, channels, setCurrentChannelId}: Props) {
+export default function ChannelSelectSidebar({
+  open, setOpen, channels, guildId,
+}: Props) {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-20" onClose={() => {
         setOpen(false)
       }}>
         <div className="fixed inset-0"/>
-
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -37,7 +39,11 @@ export default function ChannelSelectSidebar({open, setOpen, channels, setCurren
                       </div>
 
                       {/* チャンネル一覧の内容 */}
-                      <ChannelListContent channels={channels} setCurrentChannelId={setCurrentChannelId}/>
+                      <ChannelListContent
+                        channels={channels}
+                        guildId={guildId}
+                        setOpen={setOpen}
+                      />
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
                   </div>
@@ -54,10 +60,12 @@ export default function ChannelSelectSidebar({open, setOpen, channels, setCurren
 // チャンネル一覧の内容です
 function ChannelListContent({
   channels,
-  setCurrentChannelId,
+  guildId,
+  setOpen,
 }: {
   channels: channel[]
-  setCurrentChannelId: Dispatch<SetStateAction<string>>;
+  guildId: string
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <div className="mt-2">
@@ -68,15 +76,16 @@ function ChannelListContent({
             <li key={channel.id} className={classNames(
               "list-none", channel.type !== "category" ? "ml-5" : ""
             )}>
-              <button
+              <Link
                 className={classNames(
                   'w-full text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-1 rounded-md p-2 pl-3 text-sm leading-6 font-semibold'
                 )}
-                onClick={() => setCurrentChannelId(channel.id)}
+                onClick={() => setOpen(false)}
+                href={`/dashboard/${guildId}/channels/${channel.id}`}
               >
                 <ChannelTypeIcon channelType={channel.type}/>
                 {channel.name}
-              </button>
+              </Link>
             </li>
           )
         })}

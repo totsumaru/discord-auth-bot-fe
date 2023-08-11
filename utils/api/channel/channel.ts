@@ -1,4 +1,4 @@
-import {channel, roleWithPermission} from "@/utils/backend_res_type";
+import {channel, guild, roleWithPermission} from "@/utils/backend_res_type";
 import axios from "axios";
 
 // ============================================
@@ -7,6 +7,7 @@ import axios from "axios";
 
 // バックエンドからのレスポンスです
 type ApiChannelRes = {
+  server: guild
   channel: channel
   is_private: boolean
   roles: roleWithPermission[]

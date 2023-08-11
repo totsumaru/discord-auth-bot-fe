@@ -1,22 +1,31 @@
-// チャンネルの設定ページです
-import {createServerComponentClient} from "@supabase/auth-helpers-nextjs";
-import React from "react";
+// チャンネルのロール表示です
+//
+// Tableを表示します。
 import NavigationBar from "@/components/nav/NavigationBar";
+import React from "react";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
-import {GetChannelList} from "@/utils/api/channel/list/list";
-import {cookies} from "next/headers";
 import ChannelSharedContent from "@/app/(private)/dashboard/[guildId]/channels/_shared/ChannelSharedContent";
+import {GetChannel} from "@/utils/api/channel/channel";
+import {createServerComponentClient} from "@supabase/auth-helpers-nextjs";
+import {cookies} from "next/headers";
+import {GetChannelList} from "@/utils/api/channel/list/list";
 
 export default async function Index({
-  params: {guildId}
+  params: {guildId, channelId}
 }: {
-  params: { guildId: string }
+  params: { guildId: string, channelId: string }
 }) {
   const supabase = createServerComponentClient({cookies})
   const {data: {session}} = await supabase.auth.getSession()
   const accessToken = session?.access_token || ""
 
-  const {server, channels: allChannel} = await GetChannelList({
+  const {server, channel, is_private, roles} = await GetChannel({
+    accessToken: accessToken,
+    guildId: guildId,
+    channelId: channelId,
+  })
+
+  const {channels: allChannels} = await GetChannelList({
     accessToken: accessToken,
     guildId: guildId
   })
@@ -32,8 +41,8 @@ export default async function Index({
         {/* `/channels`に共通のコンポーネントです */}
         <ChannelSharedContent
           guild={server}
-          allChannels={allChannel}
-          defaultSidebarOpen={true}
+          allChannels={allChannels}
+          defaultSidebarOpen={false}
         />
       </DashboardContentLayout>
     </div>
