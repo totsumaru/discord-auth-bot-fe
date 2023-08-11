@@ -15,7 +15,7 @@ const tabClassNotFocus = "inline-flex items-center border-b-2 border-transparent
 
 type Props = {
   guildId: string
-  focusTab: string
+  focusTab: "server" | "channel" | "config" | "none"
   loginUser: user
 }
 
@@ -69,7 +69,7 @@ export default function NavigationBody({
                   />
                 </div>
 
-                {guildId ? (
+                {focusTab !== "none" ? (
                     <>
                       {/* Tab */}
                       <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

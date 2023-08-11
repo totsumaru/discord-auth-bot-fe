@@ -1,69 +1,38 @@
-"use client"
-
-import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
-import {useEffect, useState} from "react";
-import useUserStore from "@/store/user";
+import {createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import NavigationBar from "@/components/nav/NavigationBar";
-import Guilds from "@/components/card/Guilds";
-import Spinner from "@/components/loading/Spinner";
-import TopClientLayout from "@/components/layout/TopClientLayout";
-import {guild} from "@/utils/backend_res_type";
+import GuildsCard from "@/components/card/GuildsCard";
 import {GetGuilds} from "@/utils/api/guild/guild";
-import LoginSection from "@/components/section/LoginSection";
+import {cookies} from "next/headers";
 
 // 管理できるサーバーの一覧を表示します
-export default function Index() {
-  const supabase = createClientComponentClient()
-  const [guilds, setGuilds] = useState<guild[]>()
-  const [backendLoading, setBackendLoading] = useState<boolean>(true)
-  const store = useUserStore()
+export default async function Index() {
+  const supabase = createServerComponentClient({cookies})
+  const {data: {session}} = await supabase.auth.getSession()
+  const accessToken = session?.access_token || ""
 
-  useEffect(() => {
-    // backendからサーバーの一覧を取得します
-    supabase.auth.getSession().then(({data: {session}}) => {
-      // loginUserIdが入ったタイミング(ログインorログイン状態でリロード)で、バックエンドから1度だけ取得します
-      if (session?.provider_token && store.loginUserId) {
-        GetGuilds({provider_token: session.provider_token})
-          .then(res => {
-            setGuilds(res.servers)
-            setBackendLoading(false)
-          }).catch(e => {
-          console.error(e)
-        })
-      }
-    })
-  }, [store.loginUserId])
+  const {servers} = await GetGuilds({
+    provider_token: session?.provider_token || ""
+  })
 
   return (
-    <TopClientLayout>
-      <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
-        <NavigationBar/>
-        <div className="py-24 sm:py-12">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            {store.loginLoading ? (
-              <Spinner/>
-            ) : (
-              store.loginUserId ? (
-                <>
-                  <div className="mx-auto max-w-2xl lg:mx-0">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">サーバーを選択</h2>
-                    <p className="my-6 text-lg leading-8 text-gray-600">
-                      ここに表示されていないサーバーは、botが導入されていません。botを導入してからダッシュボードに移動してください。
-                    </p>
-                  </div>
-                  {backendLoading ? <Spinner/> : (
-                    guilds && (
-                      <Guilds servers={guilds}/>
-                    ))
-                  }
-                </>
-              ) : (
-                <LoginSection/>
-              )
-            )}
-          </div>
+    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+      <NavigationBar
+        focusTab="none"
+        accessToken={accessToken}
+      />
+      <div className="py-24 sm:py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <>
+            <div className="mx-auto max-w-2xl lg:mx-0">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">サーバーを選択</h2>
+              <p className="my-6 text-lg leading-8 text-gray-600">
+                ここに表示されていないサーバーは、botが導入されていません。botを導入してからダッシュボードに移動してください。
+              </p>
+            </div>
+            <GuildsCard servers={servers}/>
+          </>
         </div>
       </div>
-    </TopClientLayout>
+    </div>
   )
 }

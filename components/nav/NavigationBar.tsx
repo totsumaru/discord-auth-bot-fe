@@ -3,7 +3,7 @@ import NavigationBody from "@/components/nav/NavigationBody";
 
 type Props = {
   guildId?: string
-  focusTab: "server" | "channel" | "config"
+  focusTab: "server" | "channel" | "config" | "none"
   accessToken: string
 }
 
