@@ -1,5 +1,5 @@
 import {GetUserInfo} from "@/utils/api/info/user/user";
-import NavigationBody from "@/components/nav/NavigationBody";
+import NavigationClient from "@/components/nav/NavigationClient";
 
 type Props = {
   guildId?: string
@@ -20,7 +20,7 @@ export default async function NavigationBar({
   const {user} = await GetUserInfo({accessToken: accessToken})
 
   return (
-    <NavigationBody
+    <NavigationClient
       guildId={guildId || ""}
       focusTab={focusTab}
       loginUser={user}

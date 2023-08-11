@@ -7,9 +7,9 @@
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/button/LoginButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/button/LoginButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout/TopClientLayout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/nav/Avatar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/nav/NavigationBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavigationClient.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
