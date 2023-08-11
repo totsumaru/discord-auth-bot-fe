@@ -1,19 +1,21 @@
 import {Dispatch, Fragment, SetStateAction} from 'react'
 import {Listbox, Transition} from '@headlessui/react'
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
-import {role} from "@/utils/backend_res_type";
+import {roleWithPermission} from "@/utils/backend_res_type";
 import {classNames} from "@/utils/class_names";
 
 type Props = {
-  allRoles: role[]
-  selectedRoles: role[]
-  setSelectedRoles: Dispatch<SetStateAction<role[]>>;
+  allRoles: roleWithPermission[]
+  selectedRoles: roleWithPermission[]
+  setSelectedRoles: Dispatch<SetStateAction<roleWithPermission[]>>;
   maxAmount?: number
 }
 
 // 表示するロールのセレクターです
-export default function RoleSelector({allRoles, selectedRoles, setSelectedRoles, maxAmount}: Props) {
-  const handleRoleChange = (selected: role[]) => {
+export default function RoleSelector({
+  allRoles, selectedRoles, setSelectedRoles, maxAmount
+}: Props) {
+  const handleRoleChange = (selected: roleWithPermission[]) => {
     if (maxAmount) {
       // すでに選択されたロールの数が maxAmount に達している場合、新しいロールを追加しない
       if (selected.length > maxAmount) return;

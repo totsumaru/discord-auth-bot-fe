@@ -9,6 +9,7 @@ import {GetChannel} from "@/utils/api/channel/channel";
 import {createServerComponentClient} from "@supabase/auth-helpers-nextjs";
 import {cookies} from "next/headers";
 import {GetChannelList} from "@/utils/api/channel/list/list";
+import RolesTable from "@/components/table/RolesTable";
 
 export default async function Index({
   params: {guildId, channelId}
@@ -43,6 +44,11 @@ export default async function Index({
           guild={server}
           allChannels={allChannels}
           defaultSidebarOpen={false}
+        />
+        <RolesTable
+          roles={roles}
+          tableType={channel.type}
+          channelName={channel.name}
         />
       </DashboardContentLayout>
     </div>

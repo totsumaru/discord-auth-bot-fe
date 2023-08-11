@@ -8,7 +8,7 @@ import {
   ChannelTypeStage,
   ChannelTypeText,
   ChannelTypeVC,
-  role
+  roleWithPermission
 } from "@/utils/backend_res_type";
 import {useEffect, useState} from "react";
 import RoleSelector from "@/components/selector/RoleSelector";
@@ -32,7 +32,7 @@ import {classNames} from "@/utils/class_names";
 
 type Props = {
   tableType: ChannelType | "server"
-  roles: role[]
+  roles: roleWithPermission[]
   channelName?: string
 }
 
@@ -40,7 +40,7 @@ type Props = {
 // - テーブルの設定はこの中に記述します
 export default function RolesTable({roles, tableType, channelName}: Props) {
   const [descriptionOpen, setDescriptionOpen] = useState<boolean>(true) // ロールの説明を表示する状態です
-  const [selectedRoles, setSelectedRoles] = useState<role[]>(roles) // 表示させているロールです
+  const [selectedRoles, setSelectedRoles] = useState<roleWithPermission[]>(roles) // 表示させているロールです
 
   const displayPermissions: roleInfo[] = (() => {
     switch (tableType) {
