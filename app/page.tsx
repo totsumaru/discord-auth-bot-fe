@@ -46,7 +46,7 @@ export default function Index() {
                 >
                   botを導入する（無料）
                 </a>
-                <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
+                <a href="/dashboard" className="text-sm font-semibold leading-6 text-gray-900">
                   ダッシュボードへ移動 <span aria-hidden="true">→</span>
                 </a>
               </div>

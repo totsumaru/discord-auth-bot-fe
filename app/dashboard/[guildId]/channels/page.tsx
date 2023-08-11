@@ -5,7 +5,7 @@ import NavigationBar from "@/components/nav/NavigationBar";
 import DashboardContentLayout from "@/components/layout/DashboardContentLayout";
 import {GetChannelList} from "@/utils/api/channel/list/list";
 import {cookies} from "next/headers";
-import ChannelSharedContent from "@/app/(private)/dashboard/[guildId]/channels/_shared/ChannelSharedContent";
+import ChannelSharedContent from "@/app/dashboard/[guildId]/channels/_shared/ChannelSharedContent";
 
 export default async function Index({
   params: {guildId}
