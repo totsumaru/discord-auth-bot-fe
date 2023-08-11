@@ -1,3 +1,5 @@
+"use client"
+
 import useUserStore from "@/store/user";
 import {user} from "@/utils/backend_res_type";
 

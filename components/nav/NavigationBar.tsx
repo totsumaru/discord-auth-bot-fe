@@ -9,8 +9,9 @@ import {GetUserInfo} from "@/utils/api/info/user/user";
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {classNames} from "@/utils/class_names";
 import useUserStore from "@/store/user";
-import {GetServerInfo} from "@/utils/api/info/server/server";
 import PaymentModal from "@/components/modal/PaymentModal";
+import {GetAllRoles} from "@/utils/api/server/server";
+import {useRouter} from "next/navigation";
 
 const tabClassFocus = "inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
 const tabClassNotFocus = "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
@@ -23,6 +24,7 @@ type Props = {
 export default function NavigationBar({guildId, focusTab}: Props) {
   const supabase = createClientComponentClient()
   const userStore = useUserStore()
+  const router = useRouter()
   const [loading, setLoading] = useState<boolean>(true)
 
   const [iconUrl, setIconUrl] = useState<string>()
@@ -38,6 +40,7 @@ export default function NavigationBar({guildId, focusTab}: Props) {
     if (error) {
       console.error("ログアウトに失敗しました")
     }
+    router.push("/")
   }
 
   useEffect(() => {
@@ -56,7 +59,7 @@ export default function NavigationBar({guildId, focusTab}: Props) {
           })
 
         // サーバーの情報を取得します
-        guildId && GetServerInfo({
+        guildId && GetAllRoles({
           accessToken: session.access_token,
           guildId: guildId,
         })

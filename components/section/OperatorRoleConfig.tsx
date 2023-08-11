@@ -1,14 +1,17 @@
+"use client"
+
 import {role} from "@/utils/backend_res_type";
 import RoleSelector from "@/components/selector/RoleSelector";
-import {Dispatch, SetStateAction} from "react";
+import {useState} from "react";
 
 type Props = {
   allRoles: role[]
-  selectedRoles: role[]
-  setSelectedRoles: Dispatch<SetStateAction<role[]>>;
+  operatorRoles: role[]
 }
 
-export default function OperatorRoleConfig({allRoles, selectedRoles, setSelectedRoles}: Props) {
+export default function OperatorRoleConfig({allRoles, operatorRoles}: Props) {
+  const [selectedRoles, setSelectedRoles] = useState(operatorRoles)
+
   return (
     <div className="mt-3">
       <h3>botの操作ロール</h3>

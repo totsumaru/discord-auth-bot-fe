@@ -1,4 +1,4 @@
-import {guild, roleWithPermission} from "@/utils/backend_res_type";
+import {guild, role, roleWithPermission, user} from "@/utils/backend_res_type";
 import axios from "axios";
 
 // ============================================
@@ -9,6 +9,8 @@ import axios from "axios";
 type ApiServerRes = {
   server: guild
   roles: roleWithPermission[]
+  subscriber: user
+  operator_role: role[]
 }
 
 // リクエストです
