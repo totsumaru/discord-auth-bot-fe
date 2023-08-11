@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/Avatar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavigationBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/nav/NavigationBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavigationClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/loading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/loading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/section/OperatorRoleConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/section/OperatorRoleConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/selector/RoleSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/selector/RoleSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/middleware.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "fix-login-status",
+    "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "javascript.nodejs.core.library.configured.version": "18.12.0",
