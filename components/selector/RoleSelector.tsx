@@ -9,12 +9,11 @@ type Props = {
   selectedRoles: role[]
   setSelectedRoles: Dispatch<SetStateAction<role[]>>;
   maxAmount?: number
-  onChangeFunc?: () => void
 }
 
 // 表示するロールのセレクターです
 export default function RoleSelector({
-  allRoles, selectedRoles, setSelectedRoles, maxAmount, onChangeFunc
+  allRoles, selectedRoles, setSelectedRoles, maxAmount
 }: Props) {
   const handleRoleChange = (selected: role[]) => {
     if (maxAmount) {
@@ -23,10 +22,6 @@ export default function RoleSelector({
     }
 
     setSelectedRoles(selected);
-
-    if (onChangeFunc) {
-      onChangeFunc()
-    }
   }
 
   return (

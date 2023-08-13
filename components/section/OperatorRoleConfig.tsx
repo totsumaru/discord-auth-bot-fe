@@ -2,7 +2,7 @@
 
 import {role} from "@/utils/backend_res_type";
 import RoleSelector from "@/components/selector/RoleSelector";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {UpdateOperatorRoles} from "@/utils/api/info/server/server";
 
 type Props = {
@@ -16,16 +16,24 @@ type Props = {
 export default function OperatorRoleConfig({
   allRoles, operatorRoles, accessToken, guildId
 }: Props) {
-  const [selectedRoles, setSelectedRoles] = useState<role[]>(operatorRoles)
+  // - allRoles -> permissionあり
+  // - operatorRoles -> permissionなし
+  //
+  // 初期値にoperatorRolesを入れてしまうと、selectorで一致判定ができなくなるため、
+  // allRolesの中からidが一致するものを取り出して初期値とします。
+  const [selectedRoles, setSelectedRoles] = useState<role[]>(() => {
+    return allRoles.filter(ar => operatorRoles.some(or => or.id === ar.id));
+  });
 
-  const updateOperatorRole = () => {
+  // 選択されているロールが更新される度に、DBに保存します
+  useEffect(() => {
     UpdateOperatorRoles({
       accessToken: accessToken,
       guildId: guildId,
       operatorRoleIds: selectedRoles.map(obj => obj.id),
     })
       .catch(e => console.error(e))
-  }
+  }, [selectedRoles])
 
   return (
     <div className="mt-3">
@@ -47,7 +55,6 @@ export default function OperatorRoleConfig({
               className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-blue-500/20"
               onClick={() => {
                 setSelectedRoles(selectedRoles.filter(obj => obj.id !== value.id))
-                updateOperatorRole()
               }}
             >
               <span className="sr-only">Remove</span>
@@ -60,13 +67,12 @@ export default function OperatorRoleConfig({
           </div>
         ))}
       </div>
-
+      {/* ロール選択のセレクター */}
       <RoleSelector
         allRoles={allRoles}
         selectedRoles={selectedRoles}
         setSelectedRoles={setSelectedRoles}
         maxAmount={3}
-        onChangeFunc={updateOperatorRole}
       />
     </div>
   )
