@@ -29,42 +29,45 @@ export default function Payment({
     router.push(redirect_url)
   }
 
+  // TODO: statusごとにバッジを表示
+
   return (
-    <div className="mt-4">
-      <p>{status}</p>
-      <h1>プラン</h1>
-      <p>現在のプラン: {subscriber?.id ? "Pro" : "Free"}</p>
-      {subscriber?.id
-        ? subscriber?.id === loginUser.id
-          ? (
+    <div className="mt-5">
+      <h3 className="text-xl font-bold mt-2">2. プラン</h3>
+      <div className="text-gray-600 mt-2">
+        <p className="font-bold py-1">現在のプラン: {subscriber?.id ? "Pro" : "Free"}</p>
+        {subscriber?.id
+          ? subscriber?.id === loginUser.id
+            ? (
+              <>
+                <p>あなたによってこのサーバーはProプランとなっています。
+                  <br/>支払い情報は決済者本人しか閲覧・確認できません
+                </p>
+                <button
+                  type="button"
+                  className="mt-3 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  onClick={handle}
+                >
+                  支払いの管理
+                </button>
+              </>
+            ) : (
+              <>
+                <p>{subscriber?.id}</p>
+                <p>{userStore.loginUserId}</p>
+                <p>{subscriber?.name}によってこのサーバーはProプランとなっています。支払い情報は決済者本人しか確認できません</p>
+              </>
+            )
+          : (
             <>
-              <p>あなたによってこのサーバーはProプランとなっています。
-                <br/>支払い情報は決済者本人しか閲覧・確認できません
+              <p>
+                "Proプランになると全てのチャンネルの権限を確認することができます。"
               </p>
-              <button
-                type="button"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                onClick={handle}
-              >
-                支払いの管理
-              </button>
-            </>
-          ) : (
-            <>
-              <p>{subscriber?.id}</p>
-              <p>{userStore.loginUserId}</p>
-              <p>{subscriber?.name}によってこのサーバーはProプランとなっています。支払い情報は決済者本人しか確認できません</p>
+              <PaymentToProButton serverId={guildId} accessToken={accessToken}/>
             </>
           )
-        : (
-          <>
-            <p>
-              "Proプランになると全てのチャンネルの権限を確認することができます。"
-            </p>
-            <PaymentToProButton serverId={guildId} accessToken={accessToken}/>
-          </>
-        )
-      }
+        }
+      </div>
     </div>
   )
 }
