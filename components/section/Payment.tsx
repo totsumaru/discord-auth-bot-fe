@@ -2,20 +2,28 @@
 
 import useUserStore from "@/store/user";
 import {user} from "@/utils/backend_res_type";
+import PaymentToProButton from "@/components/button/PaymentToProButton";
 
 type Props = {
+  guildId: string
+  accessToken: string
   subscriber: user | undefined
+  status: string
+  loginUser: user
 }
 
-export default function Payment({subscriber}: Props) {
+export default function Payment({
+  subscriber, guildId, accessToken, status, loginUser
+}: Props) {
   const userStore = useUserStore()
 
   return (
     <div className="mt-4">
+      <p>{status}</p>
       <h1>プラン</h1>
       <p>現在のプラン: {subscriber?.id ? "Pro" : "Free"}</p>
       {subscriber?.id
-        ? subscriber?.id === userStore.loginUserId
+        ? subscriber?.id === loginUser.id
           ? (
             <>
               <p>あなたによってこのサーバーはProプランとなっています。支払い情報は決済者本人しか確認できません</p>
@@ -33,9 +41,7 @@ export default function Payment({subscriber}: Props) {
             <p>
               "Proプランになると全てのチャンネルの権限を確認することができます。"
             </p>
-            <button>
-              Proプランに変更
-            </button>
+            <PaymentToProButton serverId={guildId} accessToken={accessToken}/>
           </>
         )
       }

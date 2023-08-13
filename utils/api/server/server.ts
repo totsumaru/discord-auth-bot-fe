@@ -11,6 +11,7 @@ type ApiServerRes = {
   roles: role[]
   subscriber: user
   operator_role: role[]
+  status: string
 }
 
 // リクエストです

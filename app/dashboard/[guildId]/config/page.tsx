@@ -6,6 +6,7 @@ import OperatorRoleConfig from "@/components/section/OperatorRoleConfig";
 import {GetAllRoles} from "@/utils/api/server/server";
 import Payment from "@/components/section/Payment";
 import {cookies} from "next/headers";
+import {GetUserInfo} from "@/utils/api/info/user/user";
 
 export default async function Index({
   params: {guildId}
@@ -16,10 +17,12 @@ export default async function Index({
   const {data: {session}} = await supabase.auth.getSession()
   const accessToken = session?.access_token || ""
 
-  const {roles, server, subscriber, operator_role} = await GetAllRoles({
+  const {roles, server, subscriber, operator_role, status} = await GetAllRoles({
     accessToken: accessToken,
     guildId: guildId,
   })
+
+  const {user} = await GetUserInfo({accessToken: accessToken})
 
   return (
     <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
@@ -41,7 +44,13 @@ export default async function Index({
           accessToken={accessToken}
           guildId={guildId}
         />
-        <Payment subscriber={subscriber}/>
+        <Payment
+          subscriber={subscriber}
+          guildId={guildId}
+          accessToken={accessToken}
+          status={status}
+          loginUser={user}
+        />
       </DashboardContentLayout>
     </div>
   )
