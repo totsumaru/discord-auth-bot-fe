@@ -29,12 +29,17 @@ export default function Payment({
     router.push(redirect_url)
   }
 
-  // TODO: statusごとにバッジを表示
-
   return (
     <div className="mt-5">
       <h3 className="text-xl font-bold mt-2">2. プラン</h3>
       <div className="text-gray-600 mt-2">
+        {subscriber?.id && status !== "active" && (
+          <span
+            className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10"
+          >
+          支払いにエラーが発生しています
+          </span>
+        )}
         <p className="font-bold py-1">現在のプラン: {subscriber?.id ? "Pro" : "Free"}</p>
         {subscriber?.id
           ? subscriber?.id === loginUser.id
