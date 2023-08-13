@@ -21,7 +21,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="ja" className="h-full bg-white">
-    <body className={`h-full ${noto.className}`}>
+    <body className={`h-full ${noto.className}`}> {/* クラス名を読み込む */}
     {children}
     </body>
     </html>

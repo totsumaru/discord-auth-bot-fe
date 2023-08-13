@@ -37,13 +37,16 @@ export default function OperatorRoleConfig({
 
   return (
     <div className="mt-3">
-      <h3>botの操作ロール</h3>
-      <p>以下のロールを持つユーザーのみ、このbotのダッシュボードを閲覧,操作できます。</p>
-      <p>※セキュリティのため、コミュニティマネージャーなど信頼できる数名のみにしてください。</p>
-      <p>管理者権限を持つロール,ユーザーは選択する必要がありません。</p>
-      <p>（最大3つ）</p>
+      <h3 className="text-xl font-bold mb-2">1. botの操作ロール（max3）</h3>
+      <div className="text-gray-600">
+        <p className="mb-1">以下のロールを持つユーザーのみ、このbotのダッシュボードを閲覧,操作できます。（最大3つ）</p>
+        <div className="text-sm mt-3">
+          <p>※セキュリティのため、コミュニティマネージャーなど<b>信頼できる数名のみにしてください。</b></p>
+          <p>※管理者権限を持つロール,ユーザーは選択する必要がありません。</p>
+        </div>
+      </div>
 
-      <div className="min-h-[30px]">
+      <div className="min-h-[30px] py-2">
         {selectedRoles.map((value) => (
           <div key={value.id} className="inline mr-2">
           <span

@@ -8,9 +8,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['var(--font-noto)', ...defaultTheme.fontFamily.sans],
-      },
       backgroundImage: {
         "gradient_1": "url('/gradient_1.png')"
       },
