@@ -11,6 +11,7 @@ type ApiChannelRes = {
   channel: channel
   is_private: boolean
   roles: role[]
+  is_active: boolean
 }
 
 // リクエストです

@@ -10,6 +10,7 @@ import {createServerComponentClient} from "@supabase/auth-helpers-nextjs";
 import {cookies} from "next/headers";
 import {GetChannelList} from "@/utils/api/channel/list/list";
 import RolesTable from "@/components/table/RolesTable";
+import ToConfigButton from "@/components/button/ToConfigButton";
 
 export default async function Index({
   params: {guildId, channelId}
@@ -20,7 +21,7 @@ export default async function Index({
   const {data: {session}} = await supabase.auth.getSession()
   const accessToken = session?.access_token || ""
 
-  const {server, channel, is_private, roles} = await GetChannel({
+  const {server, channel, is_private, roles, is_active} = await GetChannel({
     accessToken: accessToken,
     guildId: guildId,
     channelId: channelId,
@@ -45,11 +46,18 @@ export default async function Index({
           allChannels={allChannels}
           defaultSidebarOpen={false}
         />
-        <RolesTable
-          roles={roles}
-          tableType={channel.type}
-          channelName={channel.name}
-        />
+        {is_active ? (
+          <RolesTable
+            roles={roles}
+            tableType={channel.type}
+            channelName={channel.name}
+          />
+        ) : (
+          <div className="my-4">
+            <p>チャンネルの権限を確認する場合は、Proプランにアップグレードをしてください。</p>
+            <ToConfigButton guildId={guildId}/>
+          </div>
+        )}
       </DashboardContentLayout>
     </div>
   )

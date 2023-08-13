@@ -20,6 +20,7 @@ export default function ChannelSharedContent({
         content={"サーバー全体の設定(デフォルト)から、上書きされたチャンネルの権限です。"}
         serverName={guild.name || ""}
         serverIconUrl={guild.icon_url || ""}
+        badgeContent={"Pro限定"}
       />
       {/* サイドバー表示ボタン & サイドバー */}
       <ChannelSelectSidebarWithButton
