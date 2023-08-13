@@ -39,7 +39,7 @@ export default function NavigationClient({
     <Disclosure as="nav" className="bg-white shadow">
       {({open}) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-10xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 justify-between">
 
               {/* SP: メニューボタン */}
@@ -62,11 +62,13 @@ export default function NavigationClient({
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 {/* ロゴアイコン */}
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="icon"
-                  />
+                  <a href={"/"}>
+                    <img
+                      className="h-8 w-auto"
+                      src="/logo.svg"
+                      alt="icon"
+                    />
+                  </a>
                 </div>
 
                 {focusTab !== "none" ? (

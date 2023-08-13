@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f746abbc-3e7a-4cf7-b4e7-d182cbba9b8e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/button/PaymentToProButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/api/checkout/checkout.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/[guildId]/config/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/[guildId]/config/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/section/Payment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/section/Payment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/nav/NavigationClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/nav/NavigationClient.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +25,6 @@
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
-    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
@@ -62,11 +58,11 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/app/(private)/dashboard" />
       <recent name="$PROJECT_DIR$/components/nav" />
       <recent name="$PROJECT_DIR$/utils/api/channel/list" />
       <recent name="$PROJECT_DIR$/utils/api/server" />
-      <recent name="$PROJECT_DIR$/utils" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
