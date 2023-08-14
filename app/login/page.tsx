@@ -5,7 +5,7 @@ import SimpleHeader from "@/components/nav/SimpleHeader";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+    <>
       <SimpleHeader/>
       <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
@@ -23,6 +23,6 @@ export default function Index() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

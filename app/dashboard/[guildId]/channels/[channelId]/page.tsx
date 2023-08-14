@@ -21,19 +21,40 @@ export default async function Index({
   const {data: {session}} = await supabase.auth.getSession()
   const accessToken = session?.access_token || ""
 
-  const {server, channel, is_private, roles, is_active} = await GetChannel({
-    accessToken: accessToken,
-    guildId: guildId,
-    channelId: channelId,
-  })
+  let server
+  let channel
+  let isPrivate
+  let roles
+  let isActive
+  let allChannels
 
-  const {channels: allChannels} = await GetChannelList({
-    accessToken: accessToken,
-    guildId: guildId
-  })
+  try {
+    const res = await GetChannel({
+      accessToken: accessToken,
+      guildId: guildId,
+      channelId: channelId,
+    })
+    server = res.server
+    channel = res.channel
+    roles = res.roles
+    isPrivate = res.is_private
+    isActive = res.is_active
+  } catch (e) {
+    console.error(e)
+  }
+
+  try {
+    const res = await GetChannelList({
+      accessToken: accessToken,
+      guildId: guildId
+    })
+    allChannels = res.channels
+  } catch (e) {
+    console.error(e)
+  }
 
   return (
-    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+    <>
       <NavigationBar
         guildId={guildId}
         focusTab="channel"
@@ -42,15 +63,15 @@ export default async function Index({
       <DashboardContentLayout>
         {/* `/channels`に共通のコンポーネントです */}
         <ChannelSharedContent
-          guild={server}
-          allChannels={allChannels}
+          guild={server!}
+          allChannels={allChannels!}
           defaultSidebarOpen={false}
         />
-        {is_active ? (
+        {isActive ? (
           <RolesTable
-            roles={roles}
-            tableType={channel.type}
-            channelName={channel.name}
+            roles={roles!}
+            tableType={channel?.type ?? "server"}
+            channelName={channel?.name ?? ""}
           />
         ) : (
           <div className="my-4">
@@ -59,6 +80,6 @@ export default async function Index({
           </div>
         )}
       </DashboardContentLayout>
-    </div>
+    </>
   )
 }

@@ -22,10 +22,17 @@ export default async function Index({
     guildId: guildId,
   })
 
-  const {user} = await GetUserInfo({accessToken: accessToken})
+  let user
+
+  try {
+    const res = await GetUserInfo({accessToken: accessToken})
+    user = res.user
+  } catch (e) {
+    console.error(e)
+  }
 
   return (
-    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+    <>
       <NavigationBar
         guildId={guildId}
         focusTab="config"
@@ -49,9 +56,9 @@ export default async function Index({
           guildId={guildId}
           accessToken={accessToken}
           status={status}
-          loginUser={user}
+          loginUser={user!}
         />
       </DashboardContentLayout>
-    </div>
+    </>
   )
 }

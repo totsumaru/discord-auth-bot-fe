@@ -16,13 +16,22 @@ export default async function Index({
   const {data: {session}} = await supabase.auth.getSession()
   const accessToken = session?.access_token || ""
 
-  const {server, channels: allChannel} = await GetChannelList({
-    accessToken: accessToken,
-    guildId: guildId
-  })
+  let server
+  let allChannel
+
+  try {
+    const res = await GetChannelList({
+      accessToken: accessToken,
+      guildId: guildId
+    })
+    server = res.server
+    allChannel = res.channels
+  } catch (e) {
+    console.error(e)
+  }
 
   return (
-    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+    <>
       <NavigationBar
         guildId={guildId}
         focusTab="channel"
@@ -31,11 +40,11 @@ export default async function Index({
       <DashboardContentLayout>
         {/* `/channels`に共通のコンポーネントです */}
         <ChannelSharedContent
-          guild={server}
-          allChannels={allChannel}
+          guild={server!}
+          allChannels={allChannel!}
           defaultSidebarOpen={true}
         />
       </DashboardContentLayout>
-    </div>
+    </>
   )
 }

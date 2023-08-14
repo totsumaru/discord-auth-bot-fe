@@ -20,7 +20,7 @@ export default async function Index({
   })
 
   return (
-    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+    <>
       <NavigationBar
         guildId={guildId}
         focusTab="server"
@@ -30,11 +30,11 @@ export default async function Index({
         <Heading
           title={"サーバー全体の権限"}
           content={"各ロールのデフォルトの権限です。"}
-          serverName={server.name ?? ""}
-          serverIconUrl={server.icon_url ?? ""}
+          serverName={server?.name!}
+          serverIconUrl={server?.icon_url!}
         />
-        <RolesTable roles={roles} tableType={"server"}/>
+        <RolesTable roles={roles!} tableType={"server"}/>
       </DashboardContentLayout>
-    </div>
+    </>
   )
 }

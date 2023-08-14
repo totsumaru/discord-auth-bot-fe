@@ -121,7 +121,7 @@ export default function Index() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+    <>
       {session ? (
         session.provider_token ? (
           guildsComponent()
@@ -129,7 +129,7 @@ export default function Index() {
           reLoginComponent()
         )
       ) : <Waiting/>}
-    </div>
+    </>
   )
 }
 
