@@ -150,7 +150,7 @@ export default function NavigationClient({
                                   <Squares2X2Icon
                                     className="inline text-gray-600 items-center text-xs h-5 w-5"
                                     aria-hidden="true"/>
-                                  <span className="ml-2">
+                                  <span className="ml-3">
                                     サーバー選択
                                   </span>
                                 </button>
@@ -166,7 +166,7 @@ export default function NavigationClient({
                                   <ArrowRightOnRectangleIcon
                                     className="inline text-gray-600 items-center text-xs h-5 w-5"
                                     aria-hidden="true"/>
-                                  <span className="ml-2">
+                                  <span className="ml-3">
                                     ログアウト
                                   </span>
                                 </button>

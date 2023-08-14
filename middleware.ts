@@ -22,6 +22,12 @@ export async function middleware(req: NextRequest) {
       redirectUrl.pathname = '/login';
       return NextResponse.redirect(redirectUrl);
     }
+  } else {
+    if (req.nextUrl.pathname === '/login') {
+      const redirectUrl = req.nextUrl.clone();
+      redirectUrl.pathname = '/dashboard';
+      return NextResponse.redirect(redirectUrl);
+    }
   }
 
   return res

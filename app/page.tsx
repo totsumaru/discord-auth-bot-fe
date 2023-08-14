@@ -1,4 +1,5 @@
 import {CheckIcon} from '@heroicons/react/20/solid'
+import SimpleHeader from "@/components/nav/SimpleHeader";
 
 const botInviteURL = "https://discord.com/api/oauth2/authorize?client_id=1136415127013433354&permissions=268438528&scope=bot"
 
@@ -6,7 +7,7 @@ const tiers = [
   {
     name: 'Freeプラン',
     id: 'tier-hobby',
-    href: "/dashboard",
+    href: "/login",
     priceMonthly: 'Free',
     description: 'サーバー全体のロールの管理ができるプランです。',
     features: [
@@ -17,7 +18,7 @@ const tiers = [
   {
     name: 'Proプラン',
     id: 'tier-team',
-    href: "/dashboard",
+    href: "/login",
     priceMonthly: '2,500円',
     description: 'Freeプランに加え、各チャンネルのロールの管理ができるプランです。',
     features: [
@@ -31,23 +32,11 @@ const tiers = [
 export default function Index() {
   return (
     <div className="bg-white">
-      <header className="absolute inset-x-0 top-0 z-50">
-        <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-          <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="/logo.svg"
-                alt=""
-              />
-            </a>
-          </div>
-        </nav>
-      </header>
+      {/* ヘッダー */}
+      <SimpleHeader/>
 
       {/* 本体 */}
-      <div className="relative isolate pt-14">
+      <div className="relative isolate pt-5">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
@@ -78,7 +67,7 @@ export default function Index() {
                 >
                   botを導入する（無料）
                 </a>
-                <a href="/dashboard" className="text-sm font-semibold leading-6 text-gray-900">
+                <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
                   ダッシュボードへ移動 <span aria-hidden="true">→</span>
                 </a>
               </div>
