@@ -42,9 +42,8 @@ export default function Payment({
               </>
             ) : (
               <>
-                <p>{subscriber?.id}</p>
-                <p>{userStore.loginUserId}</p>
-                <p>{subscriber?.name}によってこのサーバーはProプランとなっています。支払い情報は決済者本人しか確認できません</p>
+                <p>{subscriber?.name}によってこのサーバーはProプランとなっています。<br/>
+                  支払い情報は決済者本人しか確認できません。</p>
               </>
             )
           : (
