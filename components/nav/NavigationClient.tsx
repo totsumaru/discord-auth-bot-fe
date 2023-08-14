@@ -3,7 +3,7 @@
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {useRouter} from "next/navigation";
 import {Disclosure, Menu, Transition} from "@headlessui/react";
-import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
+import {ArrowRightOnRectangleIcon, Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import {Fragment} from "react";
 import {classNames} from "@/utils/class_names";
@@ -135,10 +135,14 @@ export default function NavigationClient({
                             <Menu.Item>
                               {({active}) => (
                                 <button
-                                  className={classNames(active ? 'bg-gray-100' : '', 'w-full text-left block px-4 py-2 text-sm text-gray-700')}
+                                  className={classNames(active ? 'bg-gray-100' : '', 'w-full text-left px-4 py-2 text-sm text-gray-700 flex items-center')}
                                   onClick={signOutHandler}
                                 >
-                                  ログアウト
+                                  <ArrowRightOnRectangleIcon className="inline text-gray-600 items-center text-xs h-5 w-5"
+                                                             aria-hidden="true"/>
+                                  <span className="ml-2">
+                                    ログアウト
+                                  </span>
                                 </button>
                               )}
                             </Menu.Item>
