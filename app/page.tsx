@@ -67,7 +67,7 @@ export default function Index() {
                   botを導入する（無料）
                 </a>
                 <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
-                  ダッシュボードへ移動 <span aria-hidden="true">→</span>
+                  ログイン <span aria-hidden="true">→</span>
                 </a>
               </div>
             </div>
