@@ -1,3 +1,4 @@
+// headlessUIはclient componentで使用する必要があります
 "use client"
 
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
@@ -5,7 +6,7 @@ import {useRouter} from "next/navigation";
 import {Disclosure, Menu, Transition} from "@headlessui/react";
 import {ArrowRightOnRectangleIcon, Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
-import {Fragment} from "react";
+import {Fragment, useState} from "react";
 import {classNames} from "@/utils/class_names";
 import LoginButton from "@/components/button/LoginButton";
 import {user} from "@/utils/backend_res_type";
@@ -13,9 +14,11 @@ import {user} from "@/utils/backend_res_type";
 const tabClassFocus = "inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
 const tabClassNotFocus = "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
 
+type tab = "server" | "channel" | "config" | "none"
+
 type Props = {
   guildId?: string
-  focusTab: "server" | "channel" | "config" | "none"
+  focusTab: tab
   loginUser: user
 }
 
@@ -25,6 +28,7 @@ export default function NavigationClient({
 }: Props) {
   const supabase = createClientComponentClient()
   const router = useRouter()
+  const [focus, setFocus] = useState<tab>(focusTab)
 
   // ログアウト時の処理です
   const signOutHandler = async () => {
@@ -71,25 +75,28 @@ export default function NavigationClient({
                   </a>
                 </div>
 
-                {focusTab !== "none" ? (
+                {focus !== "none" ? (
                     <>
                       {/* Tab */}
                       <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <Link
                           href={`/dashboard/${guildId}`}
-                          className={focusTab === "server" ? tabClassFocus : tabClassNotFocus}
+                          className={focus === "server" ? tabClassFocus : tabClassNotFocus}
+                          onClick={() => setFocus("server")}
                         >
                           サーバー全体の権限
                         </Link>
                         <Link
                           href={`/dashboard/${guildId}/channels`}
-                          className={focusTab === "channel" ? tabClassFocus : tabClassNotFocus}
+                          className={focus === "channel" ? tabClassFocus : tabClassNotFocus}
+                          onClick={() => setFocus("channel")}
                         >
                           各チャンネルの権限
                         </Link>
                         <Link
                           href={`/dashboard/${guildId}/config`}
-                          className={focusTab === "config" ? tabClassFocus : tabClassNotFocus}
+                          className={focus === "config" ? tabClassFocus : tabClassNotFocus}
+                          onClick={() => setFocus("config")}
                         >
                           設定
                         </Link>
@@ -138,8 +145,9 @@ export default function NavigationClient({
                                   className={classNames(active ? 'bg-gray-100' : '', 'w-full text-left px-4 py-2 text-sm text-gray-700 flex items-center')}
                                   onClick={signOutHandler}
                                 >
-                                  <ArrowRightOnRectangleIcon className="inline text-gray-600 items-center text-xs h-5 w-5"
-                                                             aria-hidden="true"/>
+                                  <ArrowRightOnRectangleIcon
+                                    className="inline text-gray-600 items-center text-xs h-5 w-5"
+                                    aria-hidden="true"/>
                                   <span className="ml-2">
                                     ログアウト
                                   </span>
