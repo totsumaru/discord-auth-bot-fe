@@ -19,7 +19,7 @@ const tiers = [
     name: 'Proプラン',
     id: 'tier-team',
     href: "/login",
-    priceMonthly: '2,500円',
+    priceMonthly: '980円',
     description: 'Freeプランに加え、各チャンネルのロールの管理ができるプランです。',
     features: [
       'サーバー全体のロール権限を一覧で確認',

@@ -29,7 +29,7 @@ export default function Payment({
           支払いにエラーが発生しています。status: {status}, id: {subscriber.id}
           </span>
         )}
-        <p className="font-bold py-2">現在のプラン: {subscriber?.id ? "Pro🎉" : "Free✅"}</p>
+        <p className="font-bold py-2">現在のプラン: {subscriber?.id ? "Pro🎉" : "Free ✅"}</p>
         {subscriber?.id
           ? subscriber?.id === loginUser.id
             ? (
