@@ -190,17 +190,24 @@ export default function NavigationClient({
             <div className="space-y-1 pb-4 pt-2">
               <Disclosure.Button
                 as="a"
-                href="#"
+                href={`/dashboard/${guildId}`}
                 className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
               >
-                サーバー全体の設定
+                サーバー全体の権限
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                href={`/dashboard/${guildId}/channels`}
                 className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
-                各チャンネルの設定
+                各チャンネルの権限
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href={`/dashboard/${guildId}/config`}
+                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+              >
+                設定
               </Disclosure.Button>
             </div>
           </Disclosure.Panel>
