@@ -29,6 +29,7 @@ import {numberToHexColor} from "@/utils/hex_color";
 import {roleInfo} from "@/utils/role_info";
 import ChannelTypeIcon from "@/components/icon/ChannelTypeIcon";
 import {classNames} from "@/utils/class_names";
+import {MinusIcon, PlusIcon} from "@heroicons/react/24/solid";
 
 type Props = {
   tableType: ChannelType | "server"
@@ -81,12 +82,18 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
             onClickHandler={() => {
               setSelectedRoles(roles)
             }}
+            icon={(
+              <PlusIcon className={"inline font-bold h-4 w-4 pt-0.5"}/>
+            )}
           />
           <SetSelectedRolesButton
             label={"表示をクリア"}
             onClickHandler={() => {
               setSelectedRoles([])
             }}
+            icon={(
+              <MinusIcon className={"inline font-bold h-4 w-4 pt-0.5"}/>
+            )}
           />
         </div>
         <OpenRoleDescriptionButton
