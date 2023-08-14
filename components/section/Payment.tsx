@@ -66,7 +66,7 @@ export default function Payment({
           : (
             <>
               <p>
-                "Proプランになると全てのチャンネルの権限を確認することができます。"
+                Proプランになると全てのチャンネルの権限を確認することができます。
               </p>
               <PaymentToProButton serverId={guildId} accessToken={accessToken}/>
             </>

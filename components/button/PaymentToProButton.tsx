@@ -2,6 +2,7 @@
 
 import {useRouter} from "next/navigation";
 import {Checkout} from "@/utils/api/checkout/checkout";
+import {ArrowRightCircleIcon} from "@heroicons/react/24/outline";
 
 type Props = {
   serverId: string
@@ -17,7 +18,7 @@ export default function PaymentToProButton({
   return (
     <button
       type="button"
-      className="mt-3 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      className="inline mt-3 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       onClick={(event) => {
         event.preventDefault()
         Checkout({guildId: serverId, accessToken: accessToken})
@@ -25,7 +26,10 @@ export default function PaymentToProButton({
           .catch(e => console.error(e))
       }}
     >
-      Proプランに変更
+      <span className="mr-1">
+        Proプランに変更
+      </span>
+      <ArrowRightCircleIcon className="h-5 w-5 inline pb-0.5"/>
     </button>
   )
 }
