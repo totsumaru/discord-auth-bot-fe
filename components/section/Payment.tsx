@@ -3,8 +3,7 @@
 import useUserStore from "@/store/user";
 import {user} from "@/utils/backend_res_type";
 import PaymentToProButton from "@/components/button/PaymentToProButton";
-import {CreateCustomerPortalURL} from "@/utils/api/checkout/portal/portal";
-import {useRouter} from "next/navigation";
+import ManagePaymentButton from "@/components/button/ManagePaymentButton";
 
 type Props = {
   guildId: string
@@ -18,16 +17,6 @@ export default function Payment({
   subscriber, guildId, accessToken, status, loginUser
 }: Props) {
   const userStore = useUserStore()
-  const router = useRouter()
-
-  const handle = async () => {
-    const {redirect_url} = await CreateCustomerPortalURL({
-      guildId: guildId,
-      accessToken: accessToken,
-    })
-
-    router.push(redirect_url)
-  }
 
   return (
     <div className="mt-5">
@@ -37,10 +26,10 @@ export default function Payment({
           <span
             className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10"
           >
-          支払いにエラーが発生しています
+          支払いにエラーが発生しています。status: {status}, id: {subscriber.id}
           </span>
         )}
-        <p className="font-bold py-1">現在のプラン: {subscriber?.id ? "Pro" : "Free"}</p>
+        <p className="font-bold py-2">現在のプラン: {subscriber?.id ? "Pro🎉" : "Free✅"}</p>
         {subscriber?.id
           ? subscriber?.id === loginUser.id
             ? (
@@ -48,13 +37,8 @@ export default function Payment({
                 <p>あなたによってこのサーバーはProプランとなっています。
                   <br/>支払い情報は決済者本人しか閲覧・確認できません
                 </p>
-                <button
-                  type="button"
-                  className="mt-3 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  onClick={handle}
-                >
-                  支払いの管理
-                </button>
+                <ManagePaymentButton guildId={guildId} accessToken={accessToken}/>
+                <p className="text-xs mt-1">※このボタンは決済者本人しか表示されていません</p>
               </>
             ) : (
               <>
