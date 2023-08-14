@@ -32,11 +32,10 @@ const tiers = [
 export default function Index() {
   return (
     <div className="bg-white">
-      {/* ヘッダー */}
-      <SimpleHeader/>
-
       {/* 本体 */}
-      <div className="relative isolate pt-5">
+      <div className="relative isolate">
+        {/* ヘッダー */}
+        <SimpleHeader/>
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"

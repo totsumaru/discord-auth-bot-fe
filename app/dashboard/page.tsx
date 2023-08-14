@@ -119,11 +119,10 @@ export default function Index() {
 const Waiting = () => {
   return (
     <>
-      <SimpleHeader/>
+      <SimpleHeader displayLoginButton={true}/>
       <Spinner/>
       <div className="flex flex-col items-center">
         <p className="mt-10 mb-5 text-center">画面が遷移しない場合は、再度ログインをしてください</p>
-        <LoginButton/>
       </div>
     </>
   )
