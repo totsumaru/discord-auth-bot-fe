@@ -103,7 +103,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
           }}
         />
       </DashboardSettingLayout>
-      <div className="mt-4 ml-2 sm:ml-0 flow-root">
+      <div className="mx-4 ml-2 sm:ml-0 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
             {/* チャンネルの設定時のみ、チャンネル名を表示 */}
@@ -121,7 +121,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
             <p className="ml-1 mt-2 text-sm text-gray-700">
               ※権限の変更はできません
             </p>
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+            <div className="mb-10 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
               <div style={{maxHeight: '700px', overflowY: 'auto'}}>
                 <table className="divide-y divide-gray-300">
                   {/* ロールの表示行 */}
