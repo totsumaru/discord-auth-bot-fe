@@ -124,6 +124,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
               <div style={{maxHeight: '700px', overflowY: 'auto'}}>
                 <table className="divide-y divide-gray-300">
+                  {/* ロールの表示行 */}
                   <thead className="bg-gray-50">
                   <tr>
                     <th scope="col"
@@ -144,24 +145,25 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
                       </th>
                     ))}
                   </tr>
-
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white">
 
+                  {/* 各ロールx各Permissionの行（本体）*/}
+                  <tbody className="divide-y divide-gray-200 bg-white">
                   {displayPermissions && displayPermissions.map(({value, jp, description}) => (
                     // 1つの権限(= 1row)
                     <tr key={value}>
-                      <td
-                        className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50">
+                      {/* Permission名+説明 */}
+                      <td className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50">
                         <div className="text-sm font-semibold text-gray-900">{jp}</div>
                         {descriptionOpen && (
-                          <div
-                            className="text-xs text-gray-500 break-words">{description}</div>
+                          <div className="text-xs text-gray-500 break-words">{description}</div>
                         )}
                       </td>
+                      {/* ロールに対して権限がtrue/falseのトグル */}
                       {selectedRoles.map(({id, name, permission}, index) => (
                         <td key={id} className={`w-24 break-words px-3 py-4 text-sm text-gray-500 
-                                                    ${index === 0 ? 'border-l border-gray-100' : ''} border-r border-gray-100 text-center`}>
+                                                    ${index === 0 ? 'border-l border-gray-100' : ''} border-r border-gray-100 text-center`}
+                        >
                           {permission![value] ? (
                             <TableToggle enabled={true}/>
                           ) : (
