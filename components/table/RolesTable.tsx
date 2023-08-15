@@ -97,7 +97,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
           />
         </div>
         <OpenRoleDescriptionButton
-          label={descriptionOpen ? "ロールの説明を閉じる" : "ロールの説明を表示"}
+          open={descriptionOpen}
           onClickHandler={() => {
             setDescriptionOpen(state => !state)
           }}

@@ -102,6 +102,7 @@ export const tableServerRolesInfo: roleInfo[] = [
 
 // TextChannelの権限です
 export const tableTextChannelRolesInfo: roleInfo[] = [
+  Administrator,
   ViewChannels,
   ManageChannels,
   ManageRoles,
@@ -127,6 +128,7 @@ export const tableTextChannelRolesInfo: roleInfo[] = [
 
 // Categoryの権限です
 export const tableCategoryRolesInfo: roleInfo[] = [
+  Administrator,
   ViewChannels,
   ManageChannels,
   ManageRoles,
@@ -166,6 +168,7 @@ export const tableCategoryRolesInfo: roleInfo[] = [
 
 // AnnounceChannelの権限です
 export const tableAnnounceChannelRolesInfo: roleInfo[] = [
+  Administrator,
   ViewChannels,
   ManageChannels,
   ManageRoles,
@@ -190,6 +193,7 @@ export const tableAnnounceChannelRolesInfo: roleInfo[] = [
 
 // ForumChannelの権限です
 export const tableForumChannelRolesInfo: roleInfo[] = [
+  Administrator,
   ViewChannels,
   ManageChannels,
   ManageRoles,
@@ -213,6 +217,7 @@ export const tableForumChannelRolesInfo: roleInfo[] = [
 
 // VCの権限です
 export const tableVCRolesInfo: roleInfo[] = [
+  Administrator,
   ViewChannels,
   ManageChannels,
   ManageRoles,
@@ -245,6 +250,7 @@ export const tableVCRolesInfo: roleInfo[] = [
 
 // StageChannelの権限です
 export const tableStageChannelRolesInfo: roleInfo[] = [
+  Administrator,
   ViewChannels,
   ManageChannels,
   ManageRoles,
