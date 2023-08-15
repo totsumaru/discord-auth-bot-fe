@@ -19,7 +19,6 @@ type ApiServerReq = {
 export const GetGuilds = async ({
   provider_token
 }: ApiServerReq): Promise<ApiGuildRes> => {
-  console.log("hello")
   const url = `${process.env.NEXT_PUBLIC_BE_URL!}/api/guild`
   try {
     const res = await axios.get<ApiGuildRes>(url, {
