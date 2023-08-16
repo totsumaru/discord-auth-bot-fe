@@ -103,7 +103,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
           }}
         />
       </DashboardSettingLayout>
-      <div className="mx-4 ml-2 sm:ml-0 flow-root">
+      <div className="pb-10 mx-4 ml-2 sm:ml-0 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
             {/* チャンネルの設定時のみ、チャンネル名を表示 */}
@@ -119,14 +119,21 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
               </div>
             )}
             <div className="ml-1 my-2 text-sm text-gray-700">
-              <p> ※権限の変更はできません </p>
-              <p className="flex items-center">
+              <p className="mb-1"> ※権限の変更はDiscordで行ってください</p>
+              <p className="mb-1 flex items-center">
                 ※
                 <TableToggle enabled={true} isDark={true}/>
-                ← この表示になっているものは、不要な権限です。管理者権限が全てを包括しています。
+                <span className="ml-1">
+                  これは不要な権限です。管理者権限が全てを包括しています。
+                </span>
+              </p>
+              <p className="mb-1">
+                ※
+                <span className="mr-1">{everyoneBadge()}</span>
+                などのタグは、権限の推奨です。
               </p>
             </div>
-            <div className="mb-10 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
               <div style={{maxHeight: '700px', overflowY: 'auto'}}>
                 <table className="divide-y divide-gray-300">
                   {/* ロールの表示行 */}
@@ -155,13 +162,21 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
                   {/* 各ロールx各Permissionの行（本体）*/}
                   <tbody className="divide-y divide-gray-200 bg-white">
                   {/* 1つの権限ごとにLoop処理を実行(1行) */}
-                  {displayPermissions && displayPermissions.map(({value, jp, description}) => (
+                  {displayPermissions && displayPermissions.map(({value, jp, description, tag}) => (
                     <tr key={value}>
                       {/* Permission名+説明 */}
                       <td className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50">
                         <div className="text-sm font-semibold text-gray-900">{jp}</div>
                         {descriptionOpen && (
-                          <div className="text-xs text-gray-500 break-words">{description}</div>
+                          <>
+                            <div className="text-xs text-gray-500 break-words">{description}</div>
+                            {tag === "team"
+                              ? teamBadge()
+                              : tag === "mod"
+                                ? modBadge()
+                                : tag === "everyone" && everyoneBadge()
+                            }
+                          </>
                         )}
                       </td>
                       {/* 1つのロールごとにLoop処理を実行(1行) */}
@@ -198,3 +213,35 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
   )
 }
 
+// "team"タグのバッジです
+const teamBadge = () => {
+  return (
+    <span className="inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700">
+      運営のみ
+    </span>
+  )
+}
+
+// "mod"タグのバッジです
+const modBadge = () => {
+  return (
+    <>
+      <span className="mr-1 inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700">
+        運営
+      </span>
+      <span
+        className="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800">
+        Mod
+      </span>
+    </>
+  )
+}
+
+// "everyone"タグのバッジです
+const everyoneBadge = () => {
+  return (
+    <span className="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
+      全員
+    </span>
+  )
+}
