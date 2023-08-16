@@ -166,8 +166,8 @@ const Footer = () => {
   const navigation = {
     main: [
       {name: 'お問い合わせフォーム', href: 'https://forms.gle/MkR4y1jsVChLn8QX8'},
-      {name: 'プライバシーポリシー', href: 'https://argate.jp/privacypolicy'},
-      {name: '特定商取引法に基づく表記', href: 'https://argate.jp/discord/terms-of-service'},
+      {name: 'プライバシーポリシー', href: '/privacypolicy'},
+      {name: '特定商取引法に基づく表記', href: 'tokutei'},
       {name: '会社概要', href: 'https://argate.jp/'},
     ],
   }
