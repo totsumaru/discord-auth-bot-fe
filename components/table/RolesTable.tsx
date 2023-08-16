@@ -104,7 +104,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
         />
       </DashboardSettingLayout>
       <div className="pb-10 mx-4 ml-2 sm:ml-0 flow-root">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
           <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
             {/* チャンネルの設定時のみ、チャンネル名を表示 */}
             {tableType !== "server" && (
@@ -130,81 +130,80 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
               <p className="mb-1">
                 ※
                 <span className="mr-1">{everyoneBadge()}</span>
-                などのタグは、権限の推奨です。
+                などのタグは権限の参考にし、不要な権限は外しましょう。
               </p>
             </div>
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-              <div style={{maxHeight: '700px', overflowY: 'auto'}}>
-                <table className="divide-y divide-gray-300">
-                  {/* ロールの表示行 */}
-                  <thead className="bg-gray-50">
-                  <tr>
-                    <th scope="col"
-                        className="sticky top-0 py-3.5 pl-4 pr-3 max-w-xs text-left text-sm font-semibold text-gray-100 sm:pl-6 z-10 bg-gray-500">
-                      -
-                    </th>
-                    {selectedRoles.map(({name, color}) => (
-                      // ここをBadgeに変更
-                      <th key={name} scope="col"
-                          className={"sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 z-10 bg-gray-200"}
-                          style={{backgroundColor: color ? numberToHexColor(color) : "rgb(107 114 128)"}}
-                      >
+            <div className="shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+              <table className="divide-y divide-gray-300">
+                {/* ロールの表示行 */}
+                <thead className="bg-gray-50">
+                <tr>
+                  <th scope="col"
+                      className="sticky top-0 left-0 py-3.5 pl-4 pr-3 max-w-xs text-left text-sm font-semibold text-gray-100 sm:pl-6 z-20 bg-gray-500"
+                  >
+                    -
+                  </th>
+                  {selectedRoles.map(({name, color}) => (
+                    // ロール名の行
+                    <th key={name} scope="col"
+                        className={"sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 z-10 bg-gray-200"}
+                        style={{backgroundColor: color ? numberToHexColor(color) : "rgb(107 114 128)"}}
+                    >
                           <span
                             className="ring-1 ring-gray-400 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600"
                           >
                             {name === "@everyone" ? name : `@${name}`}
                           </span>
-                      </th>
-                    ))}
-                  </tr>
-                  </thead>
-
-                  {/* 各ロールx各Permissionの行（本体）*/}
-                  <tbody className="divide-y divide-gray-200 bg-white">
-                  {/* 1つの権限ごとにLoop処理を実行(1行) */}
-                  {displayPermissions && displayPermissions.map(({value, jp, description, tag}) => (
-                    <tr key={value}>
-                      {/* Permission名+説明 */}
-                      <td className="whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50">
-                        <div className="text-sm font-semibold text-gray-900">{jp}</div>
-                        {descriptionOpen && (
-                          <>
-                            <div className="text-xs text-gray-500 break-words">{description}</div>
-                            {tag === "team"
-                              ? teamBadge()
-                              : tag === "mod"
-                                ? modBadge()
-                                : tag === "everyone" && everyoneBadge()
-                            }
-                          </>
-                        )}
-                      </td>
-                      {/* 1つのロールごとにLoop処理を実行(1行) */}
-                      {selectedRoles.map(({id, name, permission}, index) => {
-                        // このロールが管理者権限を持っているかどうか
-                        const isAdminRole = permission!["administrator"]
-                        const isAdminRow = value == "administrator"
-
-                        return (
-                          <td key={id}
-                              className={classNames(index === 0 && 'border-l border-gray-100', // Permissionの説明
-                                "w-24 break-words px-3 py-4 text-sm text-gray-500 border-r border-gray-100 text-center"
-                              )}
-                          >
-                            <TableToggle
-                              enabled={permission![value]}
-                              // 管理者権限以外のPermission行で、そのロールが管理者権限を持っている場合は、
-                              // 管理者以外のロールのトグルを薄い色に変更します（管理者の下位互換のため）
-                              isDark={!isAdminRow && isAdminRole}
-                            />
-                          </td>
-                        )
-                      })}
-                    </tr>
+                    </th>
                   ))}
-                  </tbody>
-                </table>
-              </div>
+                </tr>
+                </thead>
+
+                {/* 各ロールx各Permissionの行（本体）*/}
+                <tbody className="divide-y divide-gray-200 bg-white">
+                {/* 1つの権限ごとにLoop処理を実行(1行) */}
+                {displayPermissions && displayPermissions.map(({value, jp, description, tag}) => (
+                  <tr key={value}>
+                    {/* Permission名+説明 */}
+                    <th className="sticky left-0 whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50 z-10">
+                      <div className="text-sm font-semibold text-gray-900">{jp}</div>
+                      {descriptionOpen && (
+                        <>
+                          <div className="text-xs text-gray-500 break-words">{description}</div>
+                          {tag === "team"
+                            ? teamBadge()
+                            : tag === "mod"
+                              ? modBadge()
+                              : tag === "everyone" && everyoneBadge()
+                          }
+                        </>
+                      )}
+                    </th>
+                    {/* 1つのロールごとにLoop処理を実行(1行) */}
+                    {selectedRoles.map(({id, name, permission}, index) => {
+                      // このロールが管理者権限を持っているかどうか
+                      const isAdminRole = permission!["administrator"]
+                      const isAdminRow = value == "administrator"
+
+                      return (
+                        <td key={id}
+                            className={classNames(index === 0 && 'border-l border-gray-100', // Permissionの説明
+                              "w-24 break-words px-3 py-4 text-sm text-gray-500 border-r border-gray-100 text-center"
+                            )}
+                        >
+                          <TableToggle
+                            enabled={permission![value]}
+                            // 管理者権限以外のPermission行で、そのロールが管理者権限を持っている場合は、
+                            // 管理者以外のロールのトグルを薄い色に変更します（管理者の下位互換のため）
+                            isDark={!isAdminRow && isAdminRole}
+                          />
+                        </td>
+                      )
+                    })}
+                  </tr>
+                ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
