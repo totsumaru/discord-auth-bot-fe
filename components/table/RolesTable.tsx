@@ -106,18 +106,8 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
       <div className="pb-10 mx-4 ml-2 sm:ml-0 flow-root">
         <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
           <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
-            {/* チャンネルの設定時のみ、チャンネル名を表示 */}
-            {tableType !== "server" && (
-              <div className={classNames("border-b-2", "flex py-2 items-center")}>
-                <ChannelTypeIcon
-                  channelType={tableType as ChannelType}
-                />
-                <h3
-                  className="ml-1 text-xl font-semibold">
-                  {channelName}
-                </h3>
-              </div>
-            )}
+
+            {/* 注意事項 */}
             <div className="ml-1 my-2 text-sm text-gray-700">
               <p className="mb-1"> ※権限の変更はDiscordで行ってください</p>
               <p className="mb-1 flex items-center">
@@ -133,18 +123,29 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
                 などのタグは権限の参考にし、不要な権限は外しましょう。
               </p>
             </div>
-            <div className="shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-              <table className="divide-y divide-gray-300">
+
+            <div className="ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+              <table className="">
                 {/* ロールの表示行 */}
-                <thead className="bg-gray-50">
+                <thead>
                 <tr>
+                  {/* チャンネル名（左上） */}
                   <th scope="col"
-                      className="sticky top-0 left-0 py-3.5 pl-4 pr-3 max-w-xs text-left text-sm font-semibold text-gray-100 sm:pl-6 z-20 bg-gray-500"
+                      className="bg-gray-500 sticky top-0 left-0 py-3.5 px-4 max-w-xs text-left text-sm font-semibold text-gray-100 z-20"
                   >
-                    -
+                    <div className={classNames("border-b", "flex pb-2 items-center")}>
+                      {tableType === "server" ? ("全体の権限") : (
+                        <>
+                          <ChannelTypeIcon channelType={tableType as ChannelType}/>
+                          <span className="ml-1">
+                            {channelName}
+                          </span>
+                        </>
+                      )}
+                    </div>
                   </th>
+                  {/* ロール名 */}
                   {selectedRoles.map(({name, color}) => (
-                    // ロール名の行
                     <th key={name} scope="col"
                         className={"sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 z-10 bg-gray-200"}
                         style={{backgroundColor: color ? numberToHexColor(color) : "rgb(107 114 128)"}}
