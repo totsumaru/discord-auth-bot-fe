@@ -67,7 +67,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
   }, [roles])
 
   return (
-    <div className="block">
+    <>
       <DashboardSettingLayout>
         {/* ロール選択のセレクター */}
         <RoleSelector
@@ -210,7 +210,7 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
