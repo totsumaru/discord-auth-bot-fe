@@ -3,16 +3,19 @@ import {classNames} from "@/utils/class_names";
 
 type Props = {
   enabled: boolean
+  isDark: boolean // trueだけど色が薄い
 }
 
-export default function TableToggle({enabled}: Props) {
+export default function TableToggle({enabled, isDark}: Props) {
   return (
     <Switch
       checked={enabled}
       onChange={() => {
       }}
       className={classNames(
-        enabled ? 'bg-indigo-600' : 'bg-gray-200',
+        enabled ? (
+          isDark ? 'bg-red-200' : 'bg-indigo-600'
+        ) : 'bg-gray-200',
         'pointer-events-none relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2'
       )}
     >
