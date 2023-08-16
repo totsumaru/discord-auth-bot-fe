@@ -3,7 +3,7 @@ import Spinner from "@/components/loading/Spinner";
 
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-gradient_1 bg-cover bg-center">
+    <div className="min-h-screen bg-gradient_1 bg-auto bg-center">
       <SimpleHeader/>
       <Spinner/>
       <div className="flex flex-col items-center">
