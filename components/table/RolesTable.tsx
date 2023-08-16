@@ -165,11 +165,11 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
                 {displayPermissions && displayPermissions.map(({value, jp, description, tag}) => (
                   <tr key={value}>
                     {/* Permission名+説明 */}
-                    <th className="sticky left-0 whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50 z-10">
+                    <th className="sticky left-0 text-left whitespace-normal py-4 pl-4 pr-3 sm:pl-6 max-w-xs bg-gray-50 z-10">
                       <div className="text-sm font-semibold text-gray-900">{jp}</div>
                       {descriptionOpen && (
                         <>
-                          <div className="text-xs text-gray-500 break-words">{description}</div>
+                          <div className="text-xs text-gray-500 break-words font-thin my-0.5">{description}</div>
                           {tag === "team"
                             ? teamBadge()
                             : tag === "mod"
