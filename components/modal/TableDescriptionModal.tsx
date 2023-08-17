@@ -2,8 +2,7 @@
 
 import {Fragment, ReactNode, useState} from 'react'
 import {Dialog, Transition} from '@headlessui/react'
-import {CheckIcon} from '@heroicons/react/24/outline'
-import {InformationCircleIcon} from "@heroicons/react/24/solid";
+import {InformationCircleIcon} from "@heroicons/react/24/outline";
 import TableToggle from "@/components/toggle/TableToggle";
 
 type Props = {
@@ -53,7 +52,7 @@ export default function TableDescriptionModal({everyoneBadge}: Props) {
                   className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
                   <div>
                     <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                      <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true"/>
+                      <InformationCircleIcon className="h-6 w-6 text-green-600" aria-hidden="true"/>
                     </div>
                     <div className="mt-3 text-center sm:mt-5">
                       <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
