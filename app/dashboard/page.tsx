@@ -8,6 +8,8 @@ import LoginButton from "@/components/button/LoginButton";
 import {guild, user} from "@/utils/backend_res_type";
 import SimpleHeader from "@/components/nav/SimpleHeader";
 
+export const dynamic = 'force-dynamic'
+
 // 管理できるサーバーの一覧を表示します
 export default async function Index() {
   const supabase = createServerComponentClient({cookies})
