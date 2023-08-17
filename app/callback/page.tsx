@@ -20,7 +20,7 @@ export default function Index() {
       <SimpleHeader/>
       <Spinner/>
       <div className="flex flex-col items-center">
-        <p className="mt-10 mb-5 text-center">Loading...</p>
+        <p className="mt-10 mb-5 text-center">情報を取得中...</p>
       </div>
     </>
   )
