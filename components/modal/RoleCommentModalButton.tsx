@@ -22,7 +22,7 @@ export default function RoleCommentModalButton({comment}: Props) {
         <InformationCircleIcon className="h-5 w-5 text-red-600" aria-hidden="true"/>
       </button>
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        <Dialog as="div" className="relative z-50" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

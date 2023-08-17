@@ -32,6 +32,7 @@ import {classNames} from "@/utils/class_names";
 import {MinusIcon, PlusIcon} from "@heroicons/react/24/solid";
 import RoleCommentModalButton from "@/components/modal/RoleCommentModalButton";
 import TableDescriptionModal from "@/components/modal/TableDescriptionModal";
+import PrivateChannelAlert from "@/components/alert/PrivateChannelAlert";
 
 type Props = {
   tableType: ChannelType | "server"
@@ -119,7 +120,12 @@ export default function RolesTable({
             <div className="mb-3">
               <TableDescriptionModal everyoneBadge={everyoneBadge()}/>
             </div>
-
+            {/* プライベートチャンネルのアラート */}
+            {isPrivate && (
+              <div className="mb-3">
+                <PrivateChannelAlert/>
+              </div>
+            )}
             <div className="ring-1 ring-black ring-opacity-5 sm:rounded-lg">
               <table className="">
                 {/* ロールの表示行 */}
