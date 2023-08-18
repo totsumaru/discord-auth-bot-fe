@@ -1,8 +1,6 @@
 import {CheckIcon} from '@heroicons/react/20/solid'
 import SimpleHeader from "@/components/nav/SimpleHeader";
 
-const botInviteURL = "https://discord.com/api/oauth2/authorize?client_id=1136415127013433354&permissions=268438528&scope=bot"
-
 const tiers = [
   {
     name: 'Freeプラン',
@@ -61,7 +59,7 @@ export default function Index() {
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 {/* botの導入URL */}
                 <a
-                  href={botInviteURL}
+                  href={process.env.DISCORD_BOT_INVITE_URL}
                   className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   botを導入する（無料）

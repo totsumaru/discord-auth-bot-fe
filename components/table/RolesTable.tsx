@@ -30,16 +30,25 @@ import {roleInfo} from "@/utils/role_info";
 import ChannelTypeIcon from "@/components/icon/ChannelTypeIcon";
 import {classNames} from "@/utils/class_names";
 import {MinusIcon, PlusIcon} from "@heroicons/react/24/solid";
+import RoleCommentModalButton from "@/components/modal/RoleCommentModalButton";
+import TableDescriptionModal from "@/components/modal/TableDescriptionModal";
+import PrivateChannelAlert from "@/components/alert/PrivateChannelAlert";
 
 type Props = {
   tableType: ChannelType | "server"
   roles: role[]
   channelName?: string
+  isPrivate?: boolean
 }
 
 // ロール表示のテーブルです
 // - テーブルの設定はこの中に記述します
-export default function RolesTable({roles, tableType, channelName}: Props) {
+export default function RolesTable({
+  roles,
+  tableType,
+  channelName,
+  isPrivate,
+}: Props) {
   const [descriptionOpen, setDescriptionOpen] = useState<boolean>(true) // ロールの説明を表示する状態です
   const [selectedRoles, setSelectedRoles] = useState<role[]>(roles) // 表示させているロールです
 
@@ -108,22 +117,15 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
           <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
 
             {/* 注意事項 */}
-            <div className="ml-1 my-2 text-sm text-gray-700">
-              <p className="mb-1"> ※権限の変更はDiscordで行ってください</p>
-              <p className="mb-1 flex items-center">
-                ※
-                <TableToggle enabled={true} isDark={true}/>
-                <span className="ml-1">
-                  これは不要な権限です。管理者権限が全てを包括しています。
-                </span>
-              </p>
-              <p className="mb-1">
-                ※
-                <span className="mr-1">{everyoneBadge()}</span>
-                などのタグは権限の参考にし、不要な権限は外しましょう。
-              </p>
+            <div className="mb-3">
+              <TableDescriptionModal everyoneBadge={everyoneBadge()}/>
             </div>
-
+            {/* プライベートチャンネルのアラート */}
+            {isPrivate && (
+              <div className="mb-3">
+                <PrivateChannelAlert/>
+              </div>
+            )}
             <div className="ring-1 ring-black ring-opacity-5 sm:rounded-lg">
               <table className="">
                 {/* ロールの表示行 */}
@@ -145,16 +147,23 @@ export default function RolesTable({roles, tableType, channelName}: Props) {
                     </div>
                   </th>
                   {/* ロール名 */}
-                  {selectedRoles.map(({name, color}) => (
+                  {selectedRoles.map(({name, color, comment}) => (
                     <th key={name} scope="col"
                         className={"sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 z-10 bg-gray-200"}
                         style={{backgroundColor: color ? numberToHexColor(color) : "rgb(107 114 128)"}}
                     >
-                          <span
-                            className="ring-1 ring-gray-400 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600"
-                          >
+                      <div className="flex">
+                        <span
+                          className="ring-1 ring-gray-400 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600"
+                        >
                             {name === "@everyone" ? name : `@${name}`}
                           </span>
+                      </div>
+                      {comment && (
+                        <div className="mt-1">
+                          <RoleCommentModalButton comment={comment}/>
+                        </div>
+                      )}
                     </th>
                   ))}
                 </tr>

@@ -29,7 +29,7 @@ export default async function Index() {
     user = userInfoRes.user
   }
 
-  // ギルド情報のコンポーネントです
+  // ギルド情報のコンポーネントです。
   const guildsComponent = () => {
     return (
       <>
