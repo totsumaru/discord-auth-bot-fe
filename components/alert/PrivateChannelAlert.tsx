@@ -9,7 +9,9 @@ export default function PrivateChannelAlert() {
         </div>
         <div className="ml-3">
           <p className="text-sm text-gray-700">
-            プライベートチャンネルです。<br/>ここに表示されているロールのみ、このチャンネルを閲覧/操作できます。
+            プライベートチャンネルです。<br/>
+            ここに表示されているロールのみ、このチャンネルを閲覧/操作できます。<br/>
+            ※管理者は全てのチャンネルを閲覧できます。
           </p>
         </div>
       </div>
