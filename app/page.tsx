@@ -22,7 +22,7 @@ const tiers = [
     features: [
       'サーバー全体のロール権限を一覧で確認',
       '管理者権限の他に、3つのロールまでbotを操作可能',
-      '全てのチャンネルの権限を一覧で操作可能',
+      '全てのチャンネルの権限を一覧で確認',
     ],
   },
 ]
@@ -54,7 +54,10 @@ export default function Index() {
                 Discordの複雑な権限、まるっと管理。
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                ロールの権限やチャンネルの権限、漏れなくダッシュボードで一括管理できます。
+                ロールの権限やチャンネルの権限が一覧で確認できます。<br/>
+                <span className="text-sm">
+                  ※権限の変更はDiscordで行ってください。
+                </span>
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 {/* botの導入URL */}
@@ -178,7 +181,7 @@ const Footer = () => {
         <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="pb-6">
-              <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
+              <a href={item.href} className="text-sm leading-6 text-gray-400 hover:text-gray-900">
                 {item.name}
               </a>
             </div>
