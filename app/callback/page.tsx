@@ -21,7 +21,7 @@ export default function Index() {
       <Spinner/>
       <div className="flex flex-col items-center">
         <p className="mt-10 mb-5 text-center">
-          情報を取得中...
+          情報を取得中...<br/>
           ロールの数が多いと30秒ほどかかる場合があります。
         </p>
       </div>
