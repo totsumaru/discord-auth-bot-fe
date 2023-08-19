@@ -2,6 +2,7 @@ import {CheckIcon} from '@heroicons/react/20/solid'
 import SimpleHeader from "@/components/nav/SimpleHeader";
 import Image from "next/image";
 import DashboardImage from "@/public/dashboard.webp"
+import DashboardSPImage from "@/public/dashboard-sp.webp"
 
 const tiers = [
   {
@@ -78,14 +79,25 @@ export default function Index() {
             {/* ダッシュボードの画像 */}
             <div className="mt-16 flow-root sm:mt-24">
               <div
-                className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <Image
-                  src={DashboardImage}
-                  alt="App screenshot"
-                  width={2464} // 元は2432
-                  height={1342} // 元は1442
-                  className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                />
+                className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4"
+              >
+                <div className="lg:hidden">
+                  <Image
+                    src={DashboardSPImage} // スマホ用の画像へのパス
+                    alt="Mobile screenshot"
+                    className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                  />
+                </div>
+
+                <div className="hidden lg:block">
+                  <Image
+                    src={DashboardImage}
+                    alt="App screenshot"
+                    width={2464}
+                    height={1342}
+                    className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                  />
+                </div>
               </div>
             </div>
             {/* 料金 */}
