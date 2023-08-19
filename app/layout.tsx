@@ -3,8 +3,11 @@ import "./globals.css"
 import {Noto_Sans_JP} from 'next/font/google';
 
 export const metadata = {
-  title: 'Auth bot',
+  title: 'SCAN Discord管理',
   description: 'Discordの複雑な権限を、ダッシュボードで一括で管理できるサービスです。まずはbotを導入してスタートしてください。',
+  icons: {
+    icon: "/icon.png"
+  }
 }
 
 const noto = Noto_Sans_JP({
