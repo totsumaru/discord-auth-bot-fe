@@ -130,10 +130,10 @@ export default function RolesTable({
               <table className="">
                 {/* ロールの表示行 */}
                 <thead>
-                <tr>
+                <tr className="border-2 border-gray-500">
                   {/* チャンネル名（左上） */}
                   <th scope="col"
-                      className="bg-gray-500 sticky top-0 left-0 py-3.5 px-4 max-w-xs text-left text-sm font-semibold text-gray-100 z-20"
+                      className="bg-gray-500 sticky top-0 left-0 py-2 px-4 max-w-xs text-left text-sm font-semibold text-gray-100 z-20"
                   >
                     <div className={classNames("border-b", "flex pb-2 items-center")}>
                       {tableType === "server" ? ("全体の権限") : (
@@ -149,7 +149,7 @@ export default function RolesTable({
                   {/* ロール名 */}
                   {selectedRoles.map(({name, color, comment}) => (
                     <th key={name} scope="col"
-                        className={"sticky top-0 whitespace-nowrap w-24 px-3 py-3.5 z-10 bg-gray-200"}
+                        className={"sticky top-0 whitespace-nowrap w-24 px-3 py-2 z-10 bg-gray-200"}
                         style={{backgroundColor: color ? numberToHexColor(color) : "rgb(107 114 128)"}}
                     >
                       <div className="flex">
