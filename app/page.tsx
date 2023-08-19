@@ -171,7 +171,6 @@ const Footer = () => {
       {name: '利用規約', href: '/terms-of-service'},
       {name: 'プライバシーポリシー', href: '/privacypolicy'},
       {name: '特定商取引法に基づく表記', href: 'tokutei'},
-      {name: '会社概要', href: 'https://argate.jp/'},
     ],
   }
 
